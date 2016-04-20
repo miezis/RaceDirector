@@ -9,16 +9,17 @@
       Title="TrackConnectionView">
 
     <Grid>
-        <Grid Height="115" Width="180">
+        <Grid Height="138" Width="250">
             <Grid.RowDefinitions>
                 <RowDefinition Height="23" />
                 <RowDefinition Height="23" />
                 <RowDefinition Height="23" />
                 <RowDefinition Height="23" />
-                <RowDefinition Height="23"/>
+                <RowDefinition Height="23" />
+                <RowDefinition Height="23" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
@@ -31,15 +32,24 @@
             <TextBox x:Name="BaudRateTextBox" TextWrapping="Wrap"
                      Text="{Binding TrackConnection.BaudRate, UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="1" Grid.Column="1"/>
+            
+            <Label x:Name="MinTimeLabel" Content="Minimal Lap Time:" Grid.Row="2" Grid.Column="0" />
+            <TextBox x:Name="MinTimeTextBox" TextWrapping="Wrap" 
+                     Text="{Binding TrackConnection.MinTime, UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Row="2" Grid.Column="1" />
 
-            <Label x:Name="Lane1Label" Content="Lane 1:" Grid.Row="2" Grid.Column="0" />
-            <TextBox Text="{Binding TrackConnection.LanePins[0], UpdateSourceTrigger=PropertyChanged}" x:Name="Lane1TextBox" Grid.Row="2" Grid.Column="1" />
+            <Label x:Name="Lane1Label" Content="Lane 1:" Grid.Row="3" Grid.Column="0" />
+            <TextBox x:Name="Lane1TextBox"
+                     Text="{Binding TrackConnection.LanePins[0], UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Row="3" Grid.Column="1" />
 
-            <Label x:Name="Lane2Label" Content="Lane 2:" Grid.Row="3" Grid.Column="0" />
-            <TextBox Text="{Binding TrackConnection.LanePins[1], UpdateSourceTrigger=PropertyChanged}" x:Name="Lane2TextBox" Grid.Row="3" Grid.Column="1" />
+            <Label x:Name="Lane2Label" Content="Lane 2:" Grid.Row="4" Grid.Column="0" />
+            <TextBox x:Name="Lane2TextBox"
+                     Text="{Binding TrackConnection.LanePins[1], UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Row="4" Grid.Column="1" />
 
             <Button x:Name="ConnectButton" Command="{Binding ConnectToTrackCommand}"
-                            Content="Connect To Track" Grid.Row="4" Grid.Column="1"/>
+                            Content="Connect To Track" Grid.Row="5" Grid.Column="1"/>
         </Grid>
     </Grid>
 </Page>
