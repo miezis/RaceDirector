@@ -2,6 +2,7 @@
 using Autofac;
 using RaceDirector.ServiceContracts;
 using RaceDirector.Services;
+using RaceDirector.Views;
 
 namespace RaceDirector
 {
@@ -16,6 +17,9 @@ namespace RaceDirector
                 var builder = new ContainerBuilder();
 
                 builder.RegisterType<ArduinoService>().As<IArduinoService>().InstancePerLifetimeScope();
+
+                builder.RegisterType<FreePracticeView>().AsSelf().InstancePerDependency();
+                builder.RegisterType<TrackConnectionView>().AsSelf().InstancePerDependency();
 
                 BaseContainer = builder.Build();
             }

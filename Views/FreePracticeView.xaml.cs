@@ -12,21 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using RaceDirector.ServiceContracts;
 using RaceDirector.ViewModels;
-using RaceDirector.Views;
 
-namespace RaceDirector
+namespace RaceDirector.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for FreePracticeView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class FreePracticeView : Page
     {
-        public MainWindow()
+        public FreePracticeView()
         {
             InitializeComponent();
-            DataContext = new ApplicationViewModel();
+            DataContext = new FreePracticeViewModel();
         }
     }
 }

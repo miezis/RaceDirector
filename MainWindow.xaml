@@ -4,14 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RaceDirector"
+        xmlns:views="clr-namespace:RaceDirector.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="Connect To Track"/>
+                <MenuItem Header="Connect To Track" Command="{Binding NavigateToTrackConnectionCommand}" />
+                <MenuItem Header="Free Practice" Command="{Binding NavigateToFreePracticeCommand}" />
             </Menu>
-            <Frame x:Name="ContentControl" Content="Frame"/>
+            <Frame x:Name="ContentControl" Content="{Binding Application.CurrentPageView}" NavigationUIVisibility="Hidden" />
         </DockPanel>
         
     </Grid>

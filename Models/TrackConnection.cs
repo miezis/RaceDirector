@@ -55,7 +55,7 @@ namespace RaceDirector.Models
 
         public ObservableCollection<int> LanePins
         {
-            get {return _lanePins; }
+            get { return _lanePins; }
         }
 
         private void LanePinsChanged(object sender, NotifyCollectionChangedEventArgs e)
