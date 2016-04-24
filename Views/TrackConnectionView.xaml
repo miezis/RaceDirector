@@ -9,7 +9,7 @@
       Title="TrackConnectionView">
 
     <Grid>
-        <Grid Height="138" Width="250">
+        <Grid Height="238" Width="250">
             <Grid.RowDefinitions>
                 <RowDefinition Height="23" />
                 <RowDefinition Height="23" />
@@ -17,6 +17,7 @@
                 <RowDefinition Height="23" />
                 <RowDefinition Height="23" />
                 <RowDefinition Height="23" />
+                <RowDefinition Height="100" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
@@ -48,8 +49,32 @@
                      Text="{Binding TrackConnection.LanePins[1], UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="4" Grid.Column="1" />
 
+            <Button x:Name="AddLaneButton" Command="{Binding AddLaneCommand}"
+                            Content="Add Lane" Grid.Row="5" Grid.Column="0"/>
+
             <Button x:Name="ConnectButton" Command="{Binding ConnectToTrackCommand}"
                             Content="Connect To Track" Grid.Row="5" Grid.Column="1"/>
+            
+            <ItemsControl 
+                ItemsSource="{Binding TrackConnection.LanePins, UpdateSourceTrigger=PropertyChanged}"
+                Grid.Row="6" Grid.Column="1">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Path=.}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+<!--            <ListBox -->
+<!--            ItemsSource="{Binding TrackConnection.LanePins, UpdateSourceTrigger=PropertyChanged}"-->
+<!--            Grid.Row="6" Grid.Column="1">-->
+<!--                <ListBox.ItemTemplate>-->
+<!--                    <DataTemplate>-->
+<!--                        <TextBox Text="{Binding Path=.}" />-->
+<!--                    </DataTemplate>-->
+<!--                </ListBox.ItemTemplate>-->
+<!--            </ListBox>-->
         </Grid>
+        
     </Grid>
 </Page>

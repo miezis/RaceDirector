@@ -37,6 +37,9 @@ namespace RaceDirector.Services
                 var lane = parameters.LanePins.IndexOf(pin) + 1;
                 ArduinoCommander.SetLane(lane, pin, this);
             }
+
+            //temp
+            this.StartSession();
         }
 
         public void StartSession()

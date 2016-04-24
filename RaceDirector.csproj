@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AddLaneCommand.cs" />
     <Compile Include="Commands\ConnectToTrackCommand.cs" />
     <Compile Include="Commands\NavigateToCommand.cs" />
     <Compile Include="Container.cs" />

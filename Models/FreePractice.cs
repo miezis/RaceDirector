@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace RaceDirector.Models
@@ -9,7 +10,7 @@ namespace RaceDirector.Models
 
         public FreePractice()
         {
-            _lanesData = new ObservableCollection<LaneData>();
+            _lanesData = new ObservableCollection<LaneData> { new LaneData(), new LaneData() };
 
             _lanesData.CollectionChanged += LanesDataChanged;
         }

@@ -5,11 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RaceDirector.DTO;
+using RaceDirector.Services;
 
 namespace RaceDirector.ServiceContracts
 {
     public interface IArduinoService
     {
+        event EventHandler<UpdateTimesEventArgs> UpdateTimes; 
         void Reset(TrackConnectionParameters parameters);
         void StartSession();
         void PauseSession();

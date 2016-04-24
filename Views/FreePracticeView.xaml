@@ -7,9 +7,34 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="FreePracticeView">
+<!--    <DataGrid ItemsSource="{Binding FreePractice.LanesData, UpdateSourceTrigger=PropertyChanged}"/>-->
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Lane" />
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Laps" />
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="Best Time" />
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="Last Time" />
 
-    <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="89,156,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="1" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding FreePractice.LanesData[0].LapCount, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding FreePractice.LanesData[0].BestLapTime, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding FreePractice.LanesData.Length}" />
 
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="2" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding FreePractice.LanesData[1].LapCount, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding FreePractice.LanesData[1].BestLapTime, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Grid.Row="2" Grid.Column="3" Text="" />
     </Grid>
 </Page>

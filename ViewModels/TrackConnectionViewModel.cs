@@ -19,6 +19,7 @@ namespace RaceDirector.ViewModels
 
         public TrackConnection TrackConnection => _trackConnection;
         public ICommand ConnectToTrackCommand { get; private set; }
+        public ICommand AddLaneCommand { get; private set; }
 
         public bool CanConnect
         {
@@ -40,6 +41,12 @@ namespace RaceDirector.ViewModels
             _arduinoService = Container.Resolve<IArduinoService>();
 
             ConnectToTrackCommand = new ConnectToTrackCommand(this);
+            AddLaneCommand = new AddLaneCommand(this);
+        }
+
+        public void AddLane()
+        {
+            _trackConnection.LanePins.Add(0);
         }
 
         public void ConnectToTrack()
