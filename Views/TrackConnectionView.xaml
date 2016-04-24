@@ -9,15 +9,16 @@
       Title="TrackConnectionView">
 
     <Grid>
-        <Grid Height="238" Width="250">
+        <Grid Height="338" Width="250">
             <Grid.RowDefinitions>
                 <RowDefinition Height="23" />
                 <RowDefinition Height="23" />
                 <RowDefinition Height="23" />
+                <RowDefinition Height="200" />
                 <RowDefinition Height="23" />
                 <RowDefinition Height="23" />
                 <RowDefinition Height="23" />
-                <RowDefinition Height="100" />
+                
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
@@ -39,41 +40,29 @@
                      Text="{Binding TrackConnection.MinTime, UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="2" Grid.Column="1" />
 
-            <Label x:Name="Lane1Label" Content="Lane 1:" Grid.Row="3" Grid.Column="0" />
-            <TextBox x:Name="Lane1TextBox"
-                     Text="{Binding TrackConnection.LanePins[0], UpdateSourceTrigger=PropertyChanged}"
-                     Grid.Row="3" Grid.Column="1" />
-
-            <Label x:Name="Lane2Label" Content="Lane 2:" Grid.Row="4" Grid.Column="0" />
-            <TextBox x:Name="Lane2TextBox"
-                     Text="{Binding TrackConnection.LanePins[1], UpdateSourceTrigger=PropertyChanged}"
-                     Grid.Row="4" Grid.Column="1" />
-
             <Button x:Name="AddLaneButton" Command="{Binding AddLaneCommand}"
-                            Content="Add Lane" Grid.Row="5" Grid.Column="0"/>
+                            Content="Add Lane" Grid.Row="3" Grid.Column="0"/>
 
             <Button x:Name="ConnectButton" Command="{Binding ConnectToTrackCommand}"
                             Content="Connect To Track" Grid.Row="5" Grid.Column="1"/>
-            
+
             <ItemsControl 
                 ItemsSource="{Binding TrackConnection.LanePins, UpdateSourceTrigger=PropertyChanged}"
-                Grid.Row="6" Grid.Column="1">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBox Text="{Binding Path=.}" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                Grid.Row="3" Grid.Column="1">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="{Binding Path=Lane}" ContentStringFormat="Lane {0}:" Grid.Column="0"/>
+                            <TextBox Text="{Binding Path=Pin, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+                        </Grid>
 
-<!--            <ListBox -->
-<!--            ItemsSource="{Binding TrackConnection.LanePins, UpdateSourceTrigger=PropertyChanged}"-->
-<!--            Grid.Row="6" Grid.Column="1">-->
-<!--                <ListBox.ItemTemplate>-->
-<!--                    <DataTemplate>-->
-<!--                        <TextBox Text="{Binding Path=.}" />-->
-<!--                    </DataTemplate>-->
-<!--                </ListBox.ItemTemplate>-->
-<!--            </ListBox>-->
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Grid>
         
     </Grid>

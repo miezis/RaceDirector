@@ -32,10 +32,10 @@ namespace RaceDirector.Services
 
             _serialPort.Open();
 
-            foreach (var pin in parameters.LanePins)
+            foreach (var lanePin in parameters.LanePins)
             {
-                var lane = parameters.LanePins.IndexOf(pin) + 1;
-                ArduinoCommander.SetLane(lane, pin, this);
+                //var lane = parameters.LanePins.IndexOf(pin) + 1;
+                ArduinoCommander.SetLane(lanePin.Lane, lanePin.Pin, this);
             }
 
             //temp

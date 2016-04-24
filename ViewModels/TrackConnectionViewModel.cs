@@ -8,6 +8,8 @@ using RaceDirector.Commands;
 using RaceDirector.DTO;
 using RaceDirector.Models;
 using RaceDirector.ServiceContracts;
+using LanePinModel = RaceDirector.Models.LanePin;
+using LanePinDto = RaceDirector.DTO.LanePin;
 
 namespace RaceDirector.ViewModels
 {
@@ -46,7 +48,10 @@ namespace RaceDirector.ViewModels
 
         public void AddLane()
         {
-            _trackConnection.LanePins.Add(0);
+            var lastLane = _trackConnection.LanePins
+                .Max(x => x.Lane);
+            var currentLane = lastLane + 1;
+            _trackConnection.LanePins.Add(new LanePinModel(currentLane, 0));
         }
 
         public void ConnectToTrack()
@@ -56,7 +61,9 @@ namespace RaceDirector.ViewModels
                 BaudRate = _trackConnection.BaudRate,
                 Port = _trackConnection.Port,
                 MinTime = _trackConnection.MinTime,
-                LanePins = _trackConnection.LanePins.ToList()
+                LanePins = _trackConnection.LanePins
+                    .Select(x => new LanePinDto {Lane = x.Lane, Pin = x.Pin })
+                    .ToList()
             };
 
             _arduinoService.Reset(connectionParameters);

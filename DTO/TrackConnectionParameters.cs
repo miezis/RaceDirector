@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Documents;
 
 namespace RaceDirector.DTO
 {
@@ -8,6 +7,6 @@ namespace RaceDirector.DTO
         public string Port { get; set; }
         public int BaudRate { get; set; }
         public int MinTime { get; set; }
-        public List<int> LanePins { get; set; }
+        public List<LanePin> LanePins { get; set; }
     }
 }
