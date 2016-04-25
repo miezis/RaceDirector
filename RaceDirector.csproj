@@ -78,6 +78,7 @@
     <Compile Include="ServiceContracts\INavigationService.cs" />
     <Compile Include="Services\ArduinoService.cs" />
     <Compile Include="Services\UpdateTimesEventArgs.cs" />
+    <Compile Include="TrackStatus.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\FreePracticeViewModel.cs" />
     <Compile Include="ViewModels\TrackConnectionViewModel.cs" />

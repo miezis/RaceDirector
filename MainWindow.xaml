@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RaceDirector"
         xmlns:views="clr-namespace:RaceDirector.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="RaceDirector" MinHeight="320" MinWidth="520" Height="400" Width="600">
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">

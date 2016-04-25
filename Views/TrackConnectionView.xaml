@@ -5,65 +5,90 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RaceDirector.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="450" d:DesignWidth="300"
       Title="TrackConnectionView">
 
-    <Grid>
-        <Grid Height="338" Width="250">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="23" />
-                <RowDefinition Height="23" />
-                <RowDefinition Height="23" />
-                <RowDefinition Height="200" />
-                <RowDefinition Height="23" />
-                <RowDefinition Height="23" />
-                <RowDefinition Height="23" />
-                
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="100"/>
-            </Grid.ColumnDefinitions>
-
-            <Label x:Name="PortLabel" Content="Port:" Grid.Row="0" Grid.Column="0" RenderTransformOrigin="1.509,0.952" />
-            <TextBox x:Name="PortTextBox" TextWrapping="Wrap" 
-                     Text="{Binding TrackConnection.Port, UpdateSourceTrigger=PropertyChanged}"
-                     Grid.Row="0" Grid.Column="1" />
-
-            <Label x:Name="BaudRateLabel" Content="Baud Rate:" Grid.Row="1" Grid.Column="0" />
-            <TextBox x:Name="BaudRateTextBox" TextWrapping="Wrap"
-                     Text="{Binding TrackConnection.BaudRate, UpdateSourceTrigger=PropertyChanged}"
-                     Grid.Row="1" Grid.Column="1"/>
-            
-            <Label x:Name="MinTimeLabel" Content="Minimal Lap Time:" Grid.Row="2" Grid.Column="0" />
-            <TextBox x:Name="MinTimeTextBox" TextWrapping="Wrap" 
-                     Text="{Binding TrackConnection.MinTime, UpdateSourceTrigger=PropertyChanged}"
-                     Grid.Row="2" Grid.Column="1" />
-
-            <Button x:Name="AddLaneButton" Command="{Binding AddLaneCommand}"
-                            Content="Add Lane" Grid.Row="3" Grid.Column="0"/>
-
-            <Button x:Name="ConnectButton" Command="{Binding ConnectToTrackCommand}"
-                            Content="Connect To Track" Grid.Row="5" Grid.Column="1"/>
-
-            <ItemsControl 
-                ItemsSource="{Binding TrackConnection.LanePins, UpdateSourceTrigger=PropertyChanged}"
-                Grid.Row="3" Grid.Column="1">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Label Content="{Binding Path=Lane}" ContentStringFormat="Lane {0}:" Grid.Column="0"/>
-                            <TextBox Text="{Binding Path=Pin, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
-                        </Grid>
-
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Grid>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Row 0 -->
+        <Label x:Name="PortLabel" Content="Port:" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5" />
+        <TextBox x:Name="PortTextBox" TextWrapping="Wrap" Margin="0,0,0,5" Height="21" Width="63"
+                     Text="{Binding TrackConnection.Port, UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Row="0" Grid.Column="2" />
+
+        <Label x:Name="BaudRateLabel" Content="Baud Rate:" Grid.Row="0" Grid.Column="4" Margin="0,0,0,5" />
+        <TextBox x:Name="BaudRateTextBox" TextWrapping="Wrap" Margin="0,0,0,5" Height="21" Width="63"
+                     Text="{Binding TrackConnection.BaudRate, UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Row="0" Grid.Column="5"/>
+        <!-- Row 0 -->
+
+        <!-- Row 1 -->
+        <Label x:Name="MinTimeLabel" Content="Minimal Lap Time:" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" />
+        <TextBox x:Name="MinTimeTextBox" TextWrapping="Wrap" Margin="0,0,0,5" Height="21" Width="63"
+                     Text="{Binding TrackConnection.MinTime, UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Row="1" Grid.Column="2" />
+
+        <Label x:Name="PowerRelayLabel" Content="Power Relay Pin:" Grid.Row="1" Grid.Column="4" Margin="0,0,0,5" />
+        <TextBox x:Name="PowerRelayTextBox" TextWrapping="Wrap" Margin="0,0,0,5" Height="21" Width="63"
+                     Grid.Row="1" Grid.Column="5" />
+        <!-- Row 1 -->
+
+        <!-- Row 2 -->
+        <Button x:Name="AddLaneButton" Command="{Binding AddLaneCommand}" Margin="0,0,0,5" Height="21" Width="100"
+                            Content="Add Lane" Grid.Row="2" Grid.Column="3" VerticalAlignment="Top"/>
+        <!-- Row 2 -->
+        
+        <!-- Row 3 -->
+        <ItemsControl 
+                ItemsSource="{Binding TrackConnection.LanePins, UpdateSourceTrigger=PropertyChanged}"
+                Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Margin="0,0,0,5" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding Path=Lane}" ContentStringFormat="Lane {0}:" Grid.Column="0" Margin="0,0,0,5"/>
+                        <TextBox Text="{Binding Path=Pin, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="0,0,0,5" Height="21" Width="63" />
+                    </Grid>
+
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <!-- Row 3 -->
+
+        <!-- Row 4 -->
+        <!-- TODO: Add remove button -->
+        <Button x:Name="ConnectButton" Command="{Binding ConnectToTrackCommand}" Margin="0,0,0,5" Height="21" Width="100"
+                            Content="Connect To Track" Grid.Row="5" Grid.Column="5" VerticalAlignment="Bottom"/>
+        <!-- Row 4 -->
+
+        <!-- Row 5 -->
+        <!-- Row 5 -->
+
     </Grid>
 </Page>
