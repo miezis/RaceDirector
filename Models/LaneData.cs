@@ -1,20 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Globalization;
+using System.Linq;
 
 namespace RaceDirector.Models
 {
     public class LaneData : BaseModel
     {
         private int _lapCount;
-        private int _bestLapTime;
-        private ObservableCollection<int> _lapTimes;
+        private TimeSpan _bestLapTime;
+        private ObservableCollection<TimeSpan> _lapTimes;
 
         public LaneData()
         {
             _lapCount = 0;
-            _bestLapTime = int.MaxValue;
-            _lapTimes = new ObservableCollection<int>();
+            _bestLapTime = TimeSpan.FromMilliseconds(60000);
+            _lapTimes = new ObservableCollection<TimeSpan>();
 
             _lapTimes.CollectionChanged += OnLapTimesChanged;
         }
@@ -32,7 +35,7 @@ namespace RaceDirector.Models
             }
         }
 
-        public int BestLapTime
+        public TimeSpan BestLapTime
         {
             get { return _bestLapTime; }
             set
@@ -42,14 +45,24 @@ namespace RaceDirector.Models
             }
         }
 
-        public ObservableCollection<int> LapTimes
+        public ObservableCollection<TimeSpan> LapTimes
         {
             get { return _lapTimes; }
+        }
+
+        public string LapTimesStringRepresentation
+        {
+            get
+            {
+                var times = _lapTimes.Select(x => x.TotalSeconds.ToString(CultureInfo.InvariantCulture));
+                return String.Join("; ", times);
+            }
         }
 
         private void OnLapTimesChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged(nameof(LapTimes));
+            OnPropertyChanged(nameof(LapTimesStringRepresentation));
         }
     }
 }

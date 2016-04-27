@@ -4,37 +4,117 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RaceDirector.Views"
+      xmlns:converters="clr-namespace:RaceDirector.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="FreePracticeView">
+    
+    <Page.Resources>
+        <converters:IndexToLaneConverter x:Key="LaneConverter"/>
+    </Page.Resources>
+    
 <!--    <DataGrid ItemsSource="{Binding FreePractice.LanesData, UpdateSourceTrigger=PropertyChanged}"/>-->
         <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Lane" />
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="Laps" />
-        <TextBlock Grid.Row="0" Grid.Column="2" Text="Best Time" />
-        <TextBlock Grid.Row="0" Grid.Column="3" Text="Last Time" />
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="1" />
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding FreePractice.LanesData[0].LapCount, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding FreePractice.LanesData[0].BestLapTime, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding FreePractice.LanesData.Length}" />
+        <ListView Margin="10" ItemsSource="{Binding FreePractice.LanesData}" AlternationCount="8"
+                  Grid.Row="1" Grid.Column="1" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Lane" Width="120" DisplayMemberBinding="{Binding Path=(ListView.AlternationIndex),
+                            RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Converter={StaticResource LaneConverter}}" />
+                    <GridViewColumn Header="Laps" Width="80" DisplayMemberBinding="{Binding Path=LapCount, UpdateSourceTrigger=PropertyChanged}" />
+                    <GridViewColumn Header="Best Time" Width="80" DisplayMemberBinding="{Binding Path=BestLapTime.TotalSeconds, UpdateSourceTrigger=PropertyChanged}" />
+                    <GridViewColumn Header="Last Times" Width="200" DisplayMemberBinding="{Binding Path=LapTimesStringRepresentation, UpdateSourceTrigger=PropertyChanged}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="2" />
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding FreePractice.LanesData[1].LapCount, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding FreePractice.LanesData[1].BestLapTime, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBlock Grid.Row="2" Grid.Column="3" Text="" />
+<!--        <DataGrid ItemsSource="{Binding FreePractice.LanesData}" AutoGenerateColumns="False" -->
+<!--                  Grid.Row="1" Grid.Column="1" IsReadOnly="True">-->
+<!--            <DataGrid.ItemTemplate>-->
+<!--                <DataTemplate>-->
+<!--                    <UniformGrid Columns="4">-->
+<!--                        <TextBlock Text="1" />-->
+<!--                        <TextBlock Text="{Binding Path=LapCount, UpdateSourceTrigger=PropertyChanged}" />-->
+<!--                        <TextBlock Text="{Binding Path=BestLapTime.TotalSeconds, UpdateSourceTrigger=PropertyChanged}" />-->
+<!--                        <TextBlock Text="{Binding Path=(ItemsControl.AlternationIndex),-->
+<!--                            RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource LaneConverter}}" />-->
+<!--                    </UniformGrid>-->
+<!--                </DataTemplate>-->
+<!--            </DataGrid.ItemTemplate>-->
+<!--        </DataGrid>-->
+        <!--            <DataGrid.Columns>-->
+        <!--                <DataGridTextColumn Header="Lane" Binding="{Binding Path=(ItemsControl.AlternationIndex),-->
+        <!--                            RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource LaneConverter}}" />-->
+        <!--                <DataGridTextColumn Header="Laps" Binding="{Binding Path=LapCount, UpdateSourceTrigger=PropertyChanged}" />-->
+        <!--                <DataGridTextColumn Header="Best Time" Binding="{Binding Path=BestLapTime.TotalSeconds, UpdateSourceTrigger=PropertyChanged}"/>-->
+        <!--            </DataGrid.Columns>-->
+
+
+
+        <!--        <ItemsControl-->
+<!--            ItemsSource="{Binding FreePractice.LanesData, UpdateSourceTrigger=PropertyChanged}"-->
+<!--            Grid.Row="1" Grid.Column="1" AlternationCount="8">-->
+<!--            <ItemsControl.ItemsPanel>-->
+<!--                <ItemsPanelTemplate>-->
+<!--                    <UniformGrid Columns="4"/>-->
+<!--                </ItemsPanelTemplate>-->
+<!--            </ItemsControl.ItemsPanel>-->
+<!--            <ItemsControl.ItemTemplate>-->
+<!--                <DataTemplate>-->
+<!--                    <Grid ShowGridLines="True">-->
+<!--                        <Grid.ColumnDefinitions>-->
+<!--                            <ColumnDefinition Width="Auto" />-->
+<!--                            <ColumnDefinition Width="Auto" />-->
+<!--                            <ColumnDefinition Width="Auto" />-->
+<!--                            <ColumnDefinition Width="Auto" />-->
+<!--                        </Grid.ColumnDefinitions>-->
+<!--                        <Grid.RowDefinitions>-->
+<!--                            <RowDefinition Height="Auto"/>-->
+<!--                        </Grid.RowDefinitions>-->
+<!--                        -->
+<!--                        <TextBlock Grid.Row="0" Grid.Column="0" Text="1" />-->
+<!--                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=LapCount, UpdateSourceTrigger=PropertyChanged}" />-->
+<!--                        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Path=BestLapTime.TotalSeconds, UpdateSourceTrigger=PropertyChanged}" />-->
+<!--                        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Path=(ItemsControl.AlternationIndex),-->
+<!--                            RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource LaneConverter}}" />-->
+<!--                    </Grid>-->
+<!--                </DataTemplate>-->
+<!--            </ItemsControl.ItemTemplate>-->
+<!--        </ItemsControl>-->
+
     </Grid>
+
+<!--    <ItemsControl -->
+<!--                ItemsSource="{Binding TrackConnection.LanePins, UpdateSourceTrigger=PropertyChanged}"-->
+<!--                Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Margin="0,0,0,5" >-->
+<!--        <ItemsControl.ItemsPanel>-->
+<!--            <ItemsPanelTemplate>-->
+<!--                <UniformGrid Columns="2"/>-->
+<!--            </ItemsPanelTemplate>-->
+<!--        </ItemsControl.ItemsPanel>-->
+<!--        <ItemsControl.ItemTemplate>-->
+<!--            <DataTemplate>-->
+<!--                <Grid>-->
+<!--                    <Grid.ColumnDefinitions>-->
+<!--                        <ColumnDefinition />-->
+<!--                        <ColumnDefinition />-->
+<!--                    </Grid.ColumnDefinitions>-->
+<!--                    <Label Content="{Binding Path=Lane}" ContentStringFormat="Lane {0}:" Grid.Column="0" Margin="0,0,0,5"/>-->
+<!--                    <TextBox Text="{Binding Path=Pin, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="0,0,0,5" Height="21" Width="63" />-->
+<!--                </Grid>-->
+<!---->
+<!--            </DataTemplate>-->
+<!--        </ItemsControl.ItemTemplate>-->
+<!--    </ItemsControl>-->
 </Page>
