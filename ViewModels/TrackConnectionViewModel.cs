@@ -66,6 +66,10 @@ namespace RaceDirector.ViewModels
                     .ToList()
             };
 
+            var trackStatus = Container.Resolve<Application>();
+
+            trackStatus.LaneCount = _trackConnection.LanePins.Count;
+
             _arduinoService.Reset(connectionParameters);
         }
     }

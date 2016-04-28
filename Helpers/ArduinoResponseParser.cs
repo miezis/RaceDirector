@@ -20,23 +20,26 @@ namespace RaceDirector.Helpers
     {
         public static void ParseResponse(string response, IArduinoService caller)
         {
+            string[] data;
             switch (response[0])
             {
                 case '0':
-                    string[] data = response.Split(':');
+                    data = response.Split(':');
 
                     int lane = int.Parse(data[0]);
                     int time = int.Parse(data[1]);
                     caller.OnUpdateTimes(lane, time);
                     break;
                 case 'S':
-                    //StartSession();
+                    caller.OnSessionStarted();
                     break;
                 case 'L':
-                    //InformLaneSet();
+                    caller.OnLaneSet();
                     break;
                 case 'M':
-                    //InformMinTimeSet();
+                    data = response.Split(':');
+                    int minTime = int.Parse(data[1]);
+                    caller.OnMinTimeSet(minTime);
                     break;
             }    
         }

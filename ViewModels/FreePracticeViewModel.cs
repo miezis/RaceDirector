@@ -18,6 +18,8 @@ namespace RaceDirector.ViewModels
             _arduinoService = Container.Resolve<IArduinoService>();
 
             _arduinoService.UpdateTimes += OnUpdateTimes;
+
+            _arduinoService.StartSession();
         }
 
         private void OnUpdateTimes(object sender, UpdateTimesEventArgs args)

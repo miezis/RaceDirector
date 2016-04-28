@@ -11,7 +11,14 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Connect To Track" Command="{Binding NavigateToTrackConnectionCommand}" />
-                <MenuItem Header="Free Practice" Command="{Binding NavigateToFreePracticeCommand}" />
+                <MenuItem Header="Free Practice" IsEnabled="{Binding Application.IsConnected, UpdateSourceTrigger=PropertyChanged}">
+                    <MenuItem Header="_Start Free Practice" Command="{Binding NavigateToFreePracticeCommand}" />
+                    <MenuItem Header="_End Free Practice"/>
+                </MenuItem>
+                <MenuItem Header="Race" IsEnabled="{Binding Application.IsConnected, UpdateSourceTrigger=PropertyChanged}">
+                    <MenuItem Header="_Start Race"/>
+                    <MenuItem Header="_Abort Race"/>
+                </MenuItem>
             </Menu>
             <Frame x:Name="ContentControl" Content="{Binding Application.CurrentPageView}" NavigationUIVisibility="Hidden" />
         </DockPanel>

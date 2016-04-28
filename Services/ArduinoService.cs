@@ -2,6 +2,7 @@
 using System.IO.Ports;
 using RaceDirector.DTO;
 using RaceDirector.Helpers;
+using RaceDirector.Models;
 using RaceDirector.ServiceContracts;
 
 namespace RaceDirector.Services
@@ -34,12 +35,10 @@ namespace RaceDirector.Services
 
             foreach (var lanePin in parameters.LanePins)
             {
-                //var lane = parameters.LanePins.IndexOf(pin) + 1;
                 ArduinoCommander.SetLane(lanePin.Lane, lanePin.Pin, this);
             }
 
-            //temp
-            this.StartSession();
+            ArduinoCommander.SetMinTime(parameters.MinTime, this);
         }
 
         public void StartSession()
@@ -97,17 +96,19 @@ namespace RaceDirector.Services
 
         public void OnSessionStarted()
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void OnLaneSet()
         {
-            throw new System.NotImplementedException();
+            var trackStatus = Container.Resolve<Application>();
+            trackStatus.LanesSet = trackStatus.LanesSet + 1;
         }
 
         public void OnMinTimeSet(int minTime)
         {
-            throw new System.NotImplementedException();
+            var trackStatus = Container.Resolve<Application>();
+            trackStatus.MinTimeSet = true;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace RaceDirector.ViewModels
 
         public ApplicationViewModel()
         {
-            _application = new Application();
+            _application = Container.Resolve<Application>();
 
             NavigateToFreePracticeCommand = new NavigateToCommand<FreePracticeView>(this);
             NavigateToTrackConnectionCommand = new NavigateToCommand<TrackConnectionView>(this);

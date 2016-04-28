@@ -12,6 +12,13 @@ namespace RaceDirector.Helpers
             caller.Write(command);
         }
 
+        public static void SetMinTime(int minTime, IArduinoService caller)
+        {
+            string command = $"!{(int) TrackCommands.SetMinTime:00}{minTime:0000}.";
+
+            caller.Write(command);
+        }
+
         public static void StartSession(IArduinoService caller)
         {
             string command = $"!{(int)TrackCommands.StartSession:00}.";

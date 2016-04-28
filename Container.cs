@@ -1,7 +1,9 @@
 ﻿using System.Runtime.Remoting.Services;
 using Autofac;
+using RaceDirector.Models;
 using RaceDirector.ServiceContracts;
 using RaceDirector.Services;
+using RaceDirector.ViewModels;
 using RaceDirector.Views;
 
 namespace RaceDirector
@@ -17,6 +19,8 @@ namespace RaceDirector
                 var builder = new ContainerBuilder();
 
                 builder.RegisterType<ArduinoService>().As<IArduinoService>().InstancePerLifetimeScope();
+
+                builder.RegisterType<Application>().AsSelf().SingleInstance();
 
                 builder.RegisterType<FreePracticeView>().AsSelf().InstancePerDependency();
                 builder.RegisterType<TrackConnectionView>().AsSelf().InstancePerDependency();
