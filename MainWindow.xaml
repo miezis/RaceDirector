@@ -20,6 +20,9 @@
                     <MenuItem Header="_Abort Race"/>
                 </MenuItem>
             </Menu>
+            <StatusBar DockPanel.Dock="Bottom">
+                <TextBlock Text="{Binding Application.IsConnected, StringFormat=Connected to track: {0}}"/>
+            </StatusBar>
             <Frame x:Name="ContentControl" Content="{Binding Application.CurrentPageView}" NavigationUIVisibility="Hidden" />
         </DockPanel>
         
