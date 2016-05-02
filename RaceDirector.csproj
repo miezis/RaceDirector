@@ -62,6 +62,7 @@
     <Compile Include="Commands\AddLaneCommand.cs" />
     <Compile Include="Commands\ConnectToTrackCommand.cs" />
     <Compile Include="Commands\NavigateToCommand.cs" />
+    <Compile Include="Commands\RemoveLaneCommand.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="Converters\IndexToLaneConverter.cs" />
     <Compile Include="DTO\LanePin.cs" />

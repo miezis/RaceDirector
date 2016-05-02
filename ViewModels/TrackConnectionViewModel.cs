@@ -22,6 +22,7 @@ namespace RaceDirector.ViewModels
         public TrackConnection TrackConnection => _trackConnection;
         public ICommand ConnectToTrackCommand { get; private set; }
         public ICommand AddLaneCommand { get; private set; }
+        public ICommand RemoveLaneCommand { get; private set; }
 
         public bool CanConnect
         {
@@ -44,6 +45,7 @@ namespace RaceDirector.ViewModels
 
             ConnectToTrackCommand = new ConnectToTrackCommand(this);
             AddLaneCommand = new AddLaneCommand(this);
+            RemoveLaneCommand = new RemoveLaneCommand(this);
         }
 
         public void AddLane()
@@ -52,6 +54,12 @@ namespace RaceDirector.ViewModels
                 .Max(x => x.Lane);
             var currentLane = lastLane + 1;
             _trackConnection.LanePins.Add(new LanePinModel(currentLane, 0));
+        }
+
+        public void RemoveLane()
+        {
+            var index = _trackConnection.LanePins.Count - 1;
+            _trackConnection.LanePins.RemoveAt(index);
         }
 
         public void ConnectToTrack()

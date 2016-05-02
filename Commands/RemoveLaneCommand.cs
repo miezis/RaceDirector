@@ -4,21 +4,21 @@ using RaceDirector.ViewModels;
 
 namespace RaceDirector.Commands
 {
-    public class AddLaneCommand : ICommand
+    public class RemoveLaneCommand : ICommand
     {
         private TrackConnectionViewModel _viewModel;
-        public AddLaneCommand(TrackConnectionViewModel viewModel)
+        public RemoveLaneCommand(TrackConnectionViewModel viewModel)
         {
             _viewModel = viewModel;
         }
         public bool CanExecute(object parameter)
         {
-            return _viewModel.TrackConnection.LanePins.Count < 8;
+            return _viewModel.TrackConnection.LanePins.Count > 1;
         }
 
         public void Execute(object parameter)
         {
-            _viewModel.AddLane();
+            _viewModel.RemoveLane();
         }
 
         public event EventHandler CanExecuteChanged
