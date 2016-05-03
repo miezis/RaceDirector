@@ -35,7 +35,7 @@ namespace RaceDirector.Helpers
 
         public static void StopSession(IArduinoService caller)
         {
-            string command = $"!{(int)TrackCommands.StopSession}.";
+            string command = $"!{(int)TrackCommands.StopSession:00}.";
 
             caller.Write(command);
         }
