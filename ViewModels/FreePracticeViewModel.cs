@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Input;
+using RaceDirector.Commands.FreePractice;
 using RaceDirector.Models;
 using RaceDirector.ServiceContracts;
 using RaceDirector.Services;
@@ -12,14 +14,23 @@ namespace RaceDirector.ViewModels
 
         public FreePractice FreePractice => _freePractice;
 
+        public ICommand EndFreePracticeCommand { get; private set; }
+
         public FreePracticeViewModel()
         {
             _freePractice = new FreePractice();
             _arduinoService = Container.Resolve<IArduinoService>();
 
+            EndFreePracticeCommand = new EndFreePracticeCommand(this);
+
             _arduinoService.UpdateTimes += OnUpdateTimes;
 
             _arduinoService.StartSession();
+        }
+
+        public void EndFreePractice()
+        {
+            _arduinoService.StopSession();
         }
 
         private void OnUpdateTimes(object sender, UpdateTimesEventArgs args)

@@ -41,6 +41,17 @@ namespace RaceDirector.Services
             ArduinoCommander.SetMinTime(parameters.MinTime, this);
         }
 
+        public void Disconnect()
+        {
+            ArduinoCommander.StopSession(this);
+
+            if (_serialPort != null && _serialPort.IsOpen)
+            {
+                _serialPort.Close();
+                _serialPort.Dispose();
+            }
+        }
+
         public void StartSession()
         {
             ArduinoCommander.StartSession(this);
@@ -48,7 +59,7 @@ namespace RaceDirector.Services
 
         public void PauseSession()
         {
-            throw new System.NotImplementedException();
+            ArduinoCommander.PauseSession(this);
         }
 
         public void ResumeSession()
@@ -58,7 +69,7 @@ namespace RaceDirector.Services
 
         public void StopSession()
         {
-            throw new System.NotImplementedException();
+            ArduinoCommander.StopSession(this);
         }
 
         public void Write(string message)

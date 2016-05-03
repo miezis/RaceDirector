@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using RaceDirector.ViewModels;
 
-namespace RaceDirector.Commands
+namespace RaceDirector.Commands.TrackConnection
 {
     public class RemoveLaneCommand : ICommand
     {

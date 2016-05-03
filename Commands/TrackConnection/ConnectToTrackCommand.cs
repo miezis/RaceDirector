@@ -2,23 +2,24 @@
 using System.Windows.Input;
 using RaceDirector.ViewModels;
 
-namespace RaceDirector.Commands
+namespace RaceDirector.Commands.TrackConnection
 {
-    public class AddLaneCommand : ICommand
+    public class ConnectToTrackCommand : ICommand
     {
-        private TrackConnectionViewModel _viewModel;
-        public AddLaneCommand(TrackConnectionViewModel viewModel)
+        public TrackConnectionViewModel _viewModel;
+
+        public ConnectToTrackCommand(TrackConnectionViewModel viewModel)
         {
             _viewModel = viewModel;
         }
         public bool CanExecute(object parameter)
         {
-            return _viewModel.TrackConnection.LanePins.Count < 8;
+            return _viewModel.CanConnect;
         }
 
         public void Execute(object parameter)
         {
-            _viewModel.AddLane();
+            _viewModel.ConnectToTrack();
         }
 
         public event EventHandler CanExecuteChanged

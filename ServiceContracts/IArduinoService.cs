@@ -13,6 +13,7 @@ namespace RaceDirector.ServiceContracts
     {
         event EventHandler<UpdateTimesEventArgs> UpdateTimes; 
         void Reset(TrackConnectionParameters parameters);
+        void Disconnect();
         void StartSession();
         void PauseSession();
         void ResumeSession();

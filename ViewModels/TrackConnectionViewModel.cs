@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Input;
 using RaceDirector.Commands;
+using RaceDirector.Commands.TrackConnection;
 using RaceDirector.DTO;
 using RaceDirector.Models;
 using RaceDirector.ServiceContracts;

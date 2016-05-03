@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Reflection;
 using System.Windows.Input;
 using RaceDirector.ViewModels;
-using RaceDirector.Views;
 
-namespace RaceDirector.Commands
+namespace RaceDirector.Commands.FreePractice
 {
-    public class NavigateToCommand<T> : ICommand
+    public class EndFreePracticeCommand : ICommand
     {
-        private ApplicationViewModel _viewModel;
-
-        public NavigateToCommand(ApplicationViewModel viewModel)
+        private FreePracticeViewModel _viewModel;
+        public EndFreePracticeCommand(FreePracticeViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -22,7 +18,7 @@ namespace RaceDirector.Commands
 
         public void Execute(object parameter)
         {
-            _viewModel.NavigateTo<T>();
+            _viewModel.EndFreePractice();
         }
 
         public event EventHandler CanExecuteChanged;

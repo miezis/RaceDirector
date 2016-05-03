@@ -25,5 +25,19 @@ namespace RaceDirector.Helpers
 
             caller.Write(command);
         }
+
+        public static void PauseSession(IArduinoService caller)
+        {
+            string command = $"!{(int)TrackCommands.PauseSession:00}.";
+
+            caller.Write(command);
+        }
+
+        public static void StopSession(IArduinoService caller)
+        {
+            string command = $"!{(int)TrackCommands.StopSession}.";
+
+            caller.Write(command);
+        }
     }
 }

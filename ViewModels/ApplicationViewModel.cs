@@ -1,6 +1,8 @@
 ﻿using System.Windows.Input;
 using RaceDirector.Commands;
+using RaceDirector.Commands.Application;
 using RaceDirector.Models;
+using RaceDirector.ServiceContracts;
 using RaceDirector.Views;
 
 namespace RaceDirector.ViewModels
@@ -13,6 +15,7 @@ namespace RaceDirector.ViewModels
 
         public ICommand NavigateToFreePracticeCommand { get; private set; }
         public ICommand NavigateToTrackConnectionCommand { get; private set; }
+        public ICommand DisconnectCommand { get; private set; }
 
         public ApplicationViewModel()
         {
@@ -20,6 +23,17 @@ namespace RaceDirector.ViewModels
 
             NavigateToFreePracticeCommand = new NavigateToCommand<FreePracticeView>(this);
             NavigateToTrackConnectionCommand = new NavigateToCommand<TrackConnectionView>(this);
+            DisconnectCommand = new DisconnectCommand(this);
+        }
+
+        public void Disconnect()
+        {
+            var arduinoService = Container.Resolve<IArduinoService>();
+
+            arduinoService.Disconnect();
+
+            _application.LanesSet = 0;
+            _application.MinTimeSet = false;
         }
 
         public void NavigateTo<T>()

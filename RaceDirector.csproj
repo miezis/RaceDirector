@@ -59,10 +59,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\AddLaneCommand.cs" />
-    <Compile Include="Commands\ConnectToTrackCommand.cs" />
-    <Compile Include="Commands\NavigateToCommand.cs" />
-    <Compile Include="Commands\RemoveLaneCommand.cs" />
+    <Compile Include="Commands\Application\DisconnectCommand.cs" />
+    <Compile Include="Commands\FreePractice\EndFreePracticeCommand.cs" />
+    <Compile Include="Commands\TrackConnection\AddLaneCommand.cs" />
+    <Compile Include="Commands\TrackConnection\ConnectToTrackCommand.cs" />
+    <Compile Include="Commands\Application\NavigateToCommand.cs" />
+    <Compile Include="Commands\TrackConnection\RemoveLaneCommand.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="Converters\IndexToLaneConverter.cs" />
     <Compile Include="DTO\LanePin.cs" />

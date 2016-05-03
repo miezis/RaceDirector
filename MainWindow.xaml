@@ -10,7 +10,10 @@
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="Connect To Track" Command="{Binding NavigateToTrackConnectionCommand}" />
+                <MenuItem Header="Connection">
+                    <MenuItem Header="_Connect" Command="{Binding NavigateToTrackConnectionCommand}" />
+                    <MenuItem Header="_Disconnect" />
+                </MenuItem>
                 <MenuItem Header="Free Practice" IsEnabled="{Binding Application.IsConnected, UpdateSourceTrigger=PropertyChanged}">
                     <MenuItem Header="_Start Free Practice" Command="{Binding NavigateToFreePracticeCommand}" />
                     <MenuItem Header="_End Free Practice"/>
