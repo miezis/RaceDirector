@@ -5,25 +5,64 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RaceDirector.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="300" d:DesignWidth="400"
       Title="RaceConfigurationView">
 
-    <Grid>
+    <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        
+        <!-- Row 0 -->
+        <Label x:Name="RaceClassLabel" Content="Race Class:" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5" />
+        <TextBox x:Name="RaceClassTextBox" TextWrapping="Wrap" Margin="0,0,0,5" Height="21" Width="63"
+                     Text="{Binding Race.RaceClass, UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Row="0" Grid.Column="2" />
+
+        <Label x:Name="WarmUpTimeLabel" Content="Warm Up Time:" Grid.Row="0" Grid.Column="3" Margin="0,0,0,5" />
+        <TextBox x:Name="WarmUpTimeTextBox" TextWrapping="Wrap" Margin="0,0,0,5" Height="21" Width="63"
+                     Text="{Binding Race.WarmUpTime, UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Row="0" Grid.Column="4" />
+        <!-- Row 0 -->
+
+        <!-- Row 1 -->
+        <Label x:Name="EventNameLabel" Content="Event Name:" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" />
+        <TextBox x:Name="EventNameTextBox" TextWrapping="Wrap" Margin="0,0,0,5" Height="21" Width="63"
+                     Text="{Binding Race.EventName, UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Row="1" Grid.Column="2" />
+
+        <Label x:Name="LaneChangeTimeLabel" Content="Lane Change Time:" Grid.Row="1" Grid.Column="3" Margin="0,0,0,5" />
+        <TextBox x:Name="LaneChangeTimeTextBox" TextWrapping="Wrap" Margin="0,0,0,5" Height="21" Width="63"
+                     Text="{Binding Race.LaneChangeTime, UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Row="1" Grid.Column="4" />
+        <!-- Row 1 -->
+
+        <!-- Row 2 -->
+        <Label x:Name="HeatTimeLabel" Content="Heat Time:" Grid.Row="2" Grid.Column="3" Margin="0,0,0,5" />
+        <TextBox x:Name="HeatTimeTextBox" TextWrapping="Wrap" Margin="0,0,0,5" Height="21" Width="63"
+                     Text="{Binding Race.HeatTime, UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Row="2" Grid.Column="4" />
+        <!-- Row 2 -->
+
+        <!-- Row 3 -->
+        <!-- Row 3 -->
+
+        <!-- Row 4 -->
+        <Button x:Name="NextStepButton" Command="{Binding NavigateToNextStepCommand}" Margin="0,0,0,5" Height="21" Width="63"
+                            Content="Next" Grid.Row="4" Grid.Column="4" VerticalAlignment="Bottom"/>
+        <!-- Row 4 -->
     </Grid>
 </Page>

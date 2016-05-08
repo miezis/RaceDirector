@@ -11,14 +11,15 @@ namespace RaceDirector.ViewModels
         private Application _application;
         public Race Race => _race;
 
-        public ICommand NavigateToNextStep { get; private set; }
+        public ICommand NavigateToNextStepCommand { get; private set; }
 
         public RaceConfigurationViewModel()
         {
             _race = Container.Resolve<Race>();
             _application = Container.Resolve<Application>();
 
-            NavigateToNextStep = new NavigateToCommand<RaceConfigurationViewModel, TrackConnectionView>(this); 
+            //TODO: Change to actual nex step view
+            NavigateToNextStepCommand = new NavigateToCommand<RaceConfigurationViewModel, TrackConnectionView>(this); 
         }
 
         public void NavigateTo<T>()

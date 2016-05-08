@@ -15,6 +15,7 @@ namespace RaceDirector.ViewModels
 
         public ICommand NavigateToFreePracticeCommand { get; private set; }
         public ICommand NavigateToTrackConnectionCommand { get; private set; }
+        public ICommand NavigateToRaceSetupCommand { get; private set; }
         public ICommand DisconnectCommand { get; private set; }
 
         public ApplicationViewModel()
@@ -23,6 +24,7 @@ namespace RaceDirector.ViewModels
 
             NavigateToFreePracticeCommand = new NavigateToCommand<ApplicationViewModel, FreePracticeView>(this);
             NavigateToTrackConnectionCommand = new NavigateToCommand<ApplicationViewModel, TrackConnectionView>(this);
+            NavigateToRaceSetupCommand = new NavigateToCommand<ApplicationViewModel, RaceConfigurationView>(this);
             DisconnectCommand = new DisconnectCommand(this);
         }
 

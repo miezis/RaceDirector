@@ -84,7 +84,7 @@
         <!-- Row 4 -->
         <Button x:Name="RemoveLaneButton" Command="{Binding RemoveLaneCommand}" Margin="0,0,0,5" Height="21" Width="100"
                             Content="Remove Lane" Grid.Row="5" Grid.Column="1" VerticalAlignment="Bottom" />
-        <!-- TODO: Add remove button -->
+
         <Button x:Name="ConnectButton" Command="{Binding ConnectToTrackCommand}" Margin="0,0,0,5" Height="21" Width="100"
                             Content="Connect To Track" Grid.Row="5" Grid.Column="5" VerticalAlignment="Bottom"/>
         <!-- Row 4 -->

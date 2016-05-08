@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RaceDirector.ViewModels;
 
 namespace RaceDirector.Views
 {
@@ -23,6 +24,7 @@ namespace RaceDirector.Views
         public RaceConfigurationView()
         {
             InitializeComponent();
+            DataContext = new RaceConfigurationViewModel();
         }
     }
 }
