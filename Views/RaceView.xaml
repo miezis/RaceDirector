@@ -1,0 +1,56 @@
+﻿<Page x:Class="RaceDirector.Views.RaceView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RaceDirector.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="RaceView">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Row 1 -->
+        <ListView Margin="10" AlternationCount="8"
+                  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Lane" Width="40" />
+                    <GridViewColumn Header="Racers Name"  Width="100"/>
+                    <GridViewColumn Header="Laps" Width="40" />
+                    <GridViewColumn Header="Total Laps" Width="60" />
+                    <GridViewColumn Header="Lap Time" Width="60" />
+                    <GridViewColumn Header="Best Time" Width="60" />
+                    <GridViewColumn Header="Position" Width="40" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <!-- Row 1 -->
+
+        <!-- Row 2 -->
+        <Button Grid.Row="2" Grid.Column="1" Content="Start WarmUp" 
+                Margin="0,0,0,5" Height="21" Width="100" VerticalAlignment="Bottom" />
+
+        <Button Grid.Row="2" Grid.Column="3" Content="Start/Resume Race" 
+                Margin="0,0,0,5" Height="21" Width="100" VerticalAlignment="Bottom" />
+
+        <Button Grid.Row="2" Grid.Column="5" Content="Track Call" 
+                Margin="0,0,0,5" Height="21" Width="100" VerticalAlignment="Bottom" />
+        <!-- Row 2 -->
+    </Grid>
+</Page>

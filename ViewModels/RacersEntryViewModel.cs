@@ -22,8 +22,7 @@ namespace RaceDirector.ViewModels
             _race = Container.Resolve<Race>();
             _application = Container.Resolve<Application>();
 
-            //TODO: Change to actual nex step view
-            StartRaceCommand = new NavigateToCommand<RacersEntryViewModel, TrackConnectionView>(this); 
+            StartRaceCommand = new NavigateToCommand<RacersEntryViewModel, RaceView>(this); 
             AddRacerCommand = new AddRacerCommand(this);
             RemoveRacerCommand = new RemoveRacerCommand(this);
         }

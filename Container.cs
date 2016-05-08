@@ -24,8 +24,9 @@ namespace RaceDirector
                 builder.RegisterType<Race>().AsSelf().SingleInstance();
 
                 builder.RegisterType<FreePracticeView>().AsSelf().InstancePerDependency();
-                builder.RegisterType<RacersEntryView>().AsSelf().InstancePerDependency();
                 builder.RegisterType<RaceConfigurationView>().AsSelf().InstancePerDependency();
+                builder.RegisterType<RacersEntryView>().AsSelf().InstancePerDependency();
+                builder.RegisterType<RaceView>().AsSelf().InstancePerDependency();
                 builder.RegisterType<TrackConnectionView>().AsSelf().InstancePerDependency();
 
                 BaseContainer = builder.Build();
