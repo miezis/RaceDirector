@@ -76,6 +76,8 @@
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\FreePractice.cs" />
     <Compile Include="Models\LaneData.cs" />
+    <Compile Include="Models\Race.cs" />
+    <Compile Include="Models\RacerData.cs" />
     <Compile Include="Models\TrackConnection.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ServiceContracts\IArduinoService.cs" />
@@ -85,9 +87,14 @@
     <Compile Include="TrackStatus.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\FreePracticeViewModel.cs" />
+    <Compile Include="ViewModels\RaceConfigurationViewModel.cs" />
     <Compile Include="ViewModels\TrackConnectionViewModel.cs" />
+    <Compile Include="ViewModels\IViewModelWithNavigation.cs" />
     <Compile Include="Views\FreePracticeView.xaml.cs">
       <DependentUpon>FreePracticeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaceConfigurationView.xaml.cs">
+      <DependentUpon>RaceConfigurationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TrackConnectionView.xaml.cs">
       <DependentUpon>TrackConnectionView.xaml</DependentUpon>
@@ -105,6 +112,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\FreePracticeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaceConfigurationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

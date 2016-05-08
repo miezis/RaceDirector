@@ -21,6 +21,7 @@ namespace RaceDirector
                 builder.RegisterType<ArduinoService>().As<IArduinoService>().InstancePerLifetimeScope();
 
                 builder.RegisterType<Application>().AsSelf().SingleInstance();
+                builder.RegisterType<Race>().AsSelf().SingleInstance();
 
                 builder.RegisterType<FreePracticeView>().AsSelf().InstancePerDependency();
                 builder.RegisterType<TrackConnectionView>().AsSelf().InstancePerDependency();

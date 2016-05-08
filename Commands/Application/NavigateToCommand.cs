@@ -4,11 +4,11 @@ using RaceDirector.ViewModels;
 
 namespace RaceDirector.Commands.Application
 {
-    public class NavigateToCommand<T> : ICommand
+    public class NavigateToCommand<TViewModel, TViewToNavigate> : ICommand where TViewModel : IViewModelWithNavigation
     {
-        private ApplicationViewModel _viewModel;
+        private TViewModel _viewModel;
 
-        public NavigateToCommand(ApplicationViewModel viewModel)
+        public NavigateToCommand(TViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -19,7 +19,7 @@ namespace RaceDirector.Commands.Application
 
         public void Execute(object parameter)
         {
-            _viewModel.NavigateTo<T>();
+            _viewModel.NavigateTo<TViewToNavigate>();
         }
 
         public event EventHandler CanExecuteChanged;

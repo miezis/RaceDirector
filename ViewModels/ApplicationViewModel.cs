@@ -7,7 +7,7 @@ using RaceDirector.Views;
 
 namespace RaceDirector.ViewModels
 {
-    public class ApplicationViewModel
+    public class ApplicationViewModel : IViewModelWithNavigation
     {
         private Application _application;
 
@@ -21,8 +21,8 @@ namespace RaceDirector.ViewModels
         {
             _application = Container.Resolve<Application>();
 
-            NavigateToFreePracticeCommand = new NavigateToCommand<FreePracticeView>(this);
-            NavigateToTrackConnectionCommand = new NavigateToCommand<TrackConnectionView>(this);
+            NavigateToFreePracticeCommand = new NavigateToCommand<ApplicationViewModel, FreePracticeView>(this);
+            NavigateToTrackConnectionCommand = new NavigateToCommand<ApplicationViewModel, TrackConnectionView>(this);
             DisconnectCommand = new DisconnectCommand(this);
         }
 
