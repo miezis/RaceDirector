@@ -91,6 +91,7 @@
     <Compile Include="ViewModels\FreePracticeViewModel.cs" />
     <Compile Include="ViewModels\RaceConfigurationViewModel.cs" />
     <Compile Include="ViewModels\RacersEntryViewModel.cs" />
+    <Compile Include="ViewModels\RaceViewModel.cs" />
     <Compile Include="ViewModels\TrackConnectionViewModel.cs" />
     <Compile Include="ViewModels\IViewModelWithNavigation.cs" />
     <Compile Include="Views\FreePracticeView.xaml.cs">
@@ -101,6 +102,9 @@
     </Compile>
     <Compile Include="Views\RacersEntryView.xaml.cs">
       <DependentUpon>RacersEntryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaceView.xaml.cs">
+      <DependentUpon>RaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TrackConnectionView.xaml.cs">
       <DependentUpon>TrackConnectionView.xaml</DependentUpon>
@@ -126,6 +130,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RacersEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,7 +170,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Commands\Race\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
