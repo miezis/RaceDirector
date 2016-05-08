@@ -61,6 +61,8 @@
     </ApplicationDefinition>
     <Compile Include="Commands\Application\DisconnectCommand.cs" />
     <Compile Include="Commands\FreePractice\EndFreePracticeCommand.cs" />
+    <Compile Include="Commands\RacersEntry\AddRacerCommand.cs" />
+    <Compile Include="Commands\RacersEntry\RemoveRacerCommand.cs" />
     <Compile Include="Commands\TrackConnection\AddLaneCommand.cs" />
     <Compile Include="Commands\TrackConnection\ConnectToTrackCommand.cs" />
     <Compile Include="Commands\Application\NavigateToCommand.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\FreePracticeViewModel.cs" />
     <Compile Include="ViewModels\RaceConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\RacersEntryViewModel.cs" />
     <Compile Include="ViewModels\TrackConnectionViewModel.cs" />
     <Compile Include="ViewModels\IViewModelWithNavigation.cs" />
     <Compile Include="Views\FreePracticeView.xaml.cs">
@@ -95,6 +98,9 @@
     </Compile>
     <Compile Include="Views\RaceConfigurationView.xaml.cs">
       <DependentUpon>RaceConfigurationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RacersEntryView.xaml.cs">
+      <DependentUpon>RacersEntryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TrackConnectionView.xaml.cs">
       <DependentUpon>TrackConnectionView.xaml</DependentUpon>
@@ -116,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RaceConfigurationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RacersEntryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

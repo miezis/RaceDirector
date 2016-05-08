@@ -1,0 +1,55 @@
+﻿<Page x:Class="RaceDirector.Views.RacersEntryView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RaceDirector.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="RacersEntryView">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Label Content="Racers:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" />
+        
+        <Button Content="Add Racer" Grid.Row="0" Grid.Column="2" Command="{Binding AddRacerCommand}"/>
+
+        <ItemsControl 
+                ItemsSource="{Binding Race.Racers, UpdateSourceTrigger=PropertyChanged}"
+                Grid.Row="1" Grid.Column="1" Margin="0,10,0,5" >
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Content="Name:" Grid.Column="0" Margin="0,0,0,5"/>
+                        <TextBox Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="0,0,0,5" Height="21" Width="63" />
+                        
+                        <Label Content="Club:" Grid.Column="3" Margin="0,0,0,5"/>
+                        <TextBox Text="{Binding Path=Club, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Margin="0,0,0,5" Height="21" Width="63" />
+                    </Grid>
+
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Button Content="Remove Racer" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" Command="{Binding RemoveRacerCommand}" />
+        <Button Content="Start Race" Grid.Row="2" Grid.Column="2" VerticalAlignment="Bottom" Command="{Binding StartRaceCommand}" />
+    </Grid>
+</Page>
