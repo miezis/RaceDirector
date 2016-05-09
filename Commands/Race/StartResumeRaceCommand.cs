@@ -15,12 +15,12 @@ namespace RaceDirector.Commands.Race
 
         public bool CanExecute(object parameter)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            _viewModel.StartResumeRace();
         }
 
         public event EventHandler CanExecuteChanged;

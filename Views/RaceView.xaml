@@ -25,6 +25,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
+        <!-- Row 0 -->
+        <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding TimeLeft}" />
+        <!-- Row 0 -->
+        
         <!-- Row 1 -->
         <ListView Margin="10" AlternationCount="8"
                   Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5">
@@ -43,13 +47,13 @@
         <!-- Row 1 -->
 
         <!-- Row 2 -->
-        <Button Grid.Row="2" Grid.Column="1" Content="Start WarmUp" 
+        <Button Grid.Row="2" Grid.Column="1" Content="Start WarmUp" Command="{Binding StartWarmUpCommand}"
                 Margin="0,0,0,5" Height="21" Width="100" VerticalAlignment="Bottom" />
 
-        <Button Grid.Row="2" Grid.Column="3" Content="Start/Resume Race" 
+        <Button Grid.Row="2" Grid.Column="3" Content="Start/Resume Race" Command="{Binding StartResumeRaceCommand}"
                 Margin="0,0,0,5" Height="21" Width="100" VerticalAlignment="Bottom" />
 
-        <Button Grid.Row="2" Grid.Column="5" Content="Track Call" 
+        <Button Grid.Row="2" Grid.Column="5" Content="Track Call" Command="{Binding TrackCallCommand}"
                 Margin="0,0,0,5" Height="21" Width="100" VerticalAlignment="Bottom" />
         <!-- Row 2 -->
     </Grid>
