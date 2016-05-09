@@ -18,7 +18,8 @@
                     <MenuItem Header="_Start Free Practice" Command="{Binding NavigateToFreePracticeCommand}" />
                     <MenuItem Header="_End Free Practice"/>
                 </MenuItem>
-                <MenuItem Header="Race" IsEnabled="{Binding Application.IsConnected, UpdateSourceTrigger=PropertyChanged}">
+                <MenuItem Header="Race" >
+                    <!-- IsEnabled="{Binding Application.IsConnected, UpdateSourceTrigger=PropertyChanged}" -->
                     <MenuItem Header="_Start Race" Command="{Binding NavigateToRaceSetupCommand}"/>
                     <MenuItem Header="_Abort Race"/>
                 </MenuItem>

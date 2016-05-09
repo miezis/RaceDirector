@@ -63,6 +63,9 @@
     <Compile Include="Commands\FreePractice\EndFreePracticeCommand.cs" />
     <Compile Include="Commands\RacersEntry\AddRacerCommand.cs" />
     <Compile Include="Commands\RacersEntry\RemoveRacerCommand.cs" />
+    <Compile Include="Commands\Race\StartResumeRaceCommand.cs" />
+    <Compile Include="Commands\Race\StartWarmUpCommand.cs" />
+    <Compile Include="Commands\Race\TrackCallCommand.cs" />
     <Compile Include="Commands\TrackConnection\AddLaneCommand.cs" />
     <Compile Include="Commands\TrackConnection\ConnectToTrackCommand.cs" />
     <Compile Include="Commands\Application\NavigateToCommand.cs" />
@@ -170,9 +173,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\Race\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

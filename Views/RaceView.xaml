@@ -36,7 +36,7 @@
                     <GridViewColumn Header="Total Laps" Width="60" />
                     <GridViewColumn Header="Lap Time" Width="60" />
                     <GridViewColumn Header="Best Time" Width="60" />
-                    <GridViewColumn Header="Position" Width="40" />
+                    <GridViewColumn Header="Position" Width="60" />
                 </GridView>
             </ListView.View>
         </ListView>
