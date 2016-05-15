@@ -9,6 +9,8 @@ using System.Windows.Threading;
 using RaceDirector.Annotations;
 using RaceDirector.Commands.Race;
 using RaceDirector.Models;
+using RaceDirector.ServiceContracts;
+using RaceDirector.Services;
 
 namespace RaceDirector.ViewModels
 {
@@ -33,9 +35,16 @@ namespace RaceDirector.ViewModels
         private Application _application;
         private Race _race;
 
+        private Dictionary<string, List<RacerData>> _groupedRacers;
+
+        private IArduinoService _arduinoService;
+
         public List<int> changeSequence { get; private set; }
         public Race Race => _race;
         public string CurrentGroup { get; private set; }
+
+        public List<RacerData> CurrentRacers => _groupedRacers[CurrentGroup];
+
         public int CurrentHeat { get; private set; }
         public TimeSpan TimeLeft { get; private set; }
         public ICommand StartWarmUpCommand { get; private set; }
@@ -46,6 +55,7 @@ namespace RaceDirector.ViewModels
         {
             _application = Container.Resolve<Application>();
             _race = Container.Resolve<Race>();
+            _arduinoService = Container.Resolve<IArduinoService>();
 
             StartWarmUpCommand = new StartWarmUpCommand(this);
             StartResumeRaceCommand = new StartResumeRaceCommand(this);
@@ -59,28 +69,55 @@ namespace RaceDirector.ViewModels
             _raceTimer.Tick += RaceTimerTick;
             _raceTimer.Interval = TimeSpan.FromSeconds(1);
 
-            var racerGroups = _race.Racers
+            _groupedRacers = _race.Racers
                 .Select((x, i) => new {Index = i, Value = x})
-                .GroupBy(x => x.Index/_application.LanesSet)
+                .GroupBy(x => x.Index/2)
                 .Select((x, i) => new {Index = i, Value = x.Select(v => v.Value).ToList()})
                 .ToDictionary(x => groupLabels[x.Index], x => x.Value);
 
             changeSequence = laneSequences[_application.LanesSet];
+
+            for (var i = 0; i < CurrentRacers.Count; i++)
+            {
+                CurrentRacers[i].CurrentLane = changeSequence[i];
+            }
+
+            _arduinoService.UpdateTimes += OnUpdateTimes;
         }
 
         public void StartWarmUp()
         {
+            _arduinoService.StartSession();
             _raceTimer.Start();
         }
 
         public void StartResumeRace()
         {
+            _arduinoService.StartSession();
             _raceTimer.Start();
         }
 
         public void TrackCall()
         {
+            _arduinoService.PauseSession();
             _raceTimer.Stop();
+        }
+
+        private void OnUpdateTimes(object sender, UpdateTimesEventArgs args)
+        {
+            var lane = args.Lane;
+            var time = TimeSpan.FromMilliseconds(args.Time);
+
+            var racer = CurrentRacers.Find(i => i.CurrentLane == lane);
+
+            racer.LapTimes.Insert(0, time);
+
+            if (racer.BestLapTime > time)
+            {
+                racer.BestLapTime = time;
+            }
+            
+            racer.LapCount++;
         }
 
         private void RaceTimerTick(object sender, EventArgs e)

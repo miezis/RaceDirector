@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RaceDirector.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="300" d:DesignWidth="460"
       Title="RaceView">
 
     <Grid Margin="10">
@@ -26,21 +26,23 @@
         </Grid.ColumnDefinitions>
         
         <!-- Row 0 -->
-        <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding TimeLeft}" />
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentGroup, StringFormat=Group {0}}" HorizontalAlignment="Center" />
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="Heat 1/2" HorizontalAlignment="Center" />
+        <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding TimeLeft}" HorizontalAlignment="Center" />
         <!-- Row 0 -->
         
         <!-- Row 1 -->
-        <ListView Margin="10" AlternationCount="8"
+        <ListView Margin="5" AlternationCount="8" ItemsSource="{Binding CurrentRacers}"
                   Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Lane" Width="40" />
-                    <GridViewColumn Header="Racers Name"  Width="100"/>
-                    <GridViewColumn Header="Laps" Width="40" />
-                    <GridViewColumn Header="Total Laps" Width="60" />
-                    <GridViewColumn Header="Lap Time" Width="60" />
-                    <GridViewColumn Header="Best Time" Width="60" />
-                    <GridViewColumn Header="Position" Width="60" />
+                    <GridViewColumn Header="Lane" Width="30" DisplayMemberBinding="{Binding Path=CurrentLane}" />
+                    <GridViewColumn Header="Racers Name"  Width="75" DisplayMemberBinding="{Binding Path=Name}"/>
+                    <GridViewColumn Header="Laps" Width="30" DisplayMemberBinding="{Binding Path=LapCount}" />
+                    <GridViewColumn Header="Total Laps" Width="60" DisplayMemberBinding="{Binding Path=LapCount}" />
+                    <GridViewColumn Header="Lap Time" Width="55" DisplayMemberBinding="{Binding Path=LapTimes[0].TotalSeconds}"/>
+                    <GridViewColumn Header="Best Time" Width="55" DisplayMemberBinding="{Binding Path=BestLapTime.TotalSeconds}" />
+                    <GridViewColumn Header="Position" Width="50" DisplayMemberBinding="{Binding Path=CurrentLane}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -51,7 +53,7 @@
                 Margin="0,0,0,5" Height="21" Width="100" VerticalAlignment="Bottom" />
 
         <Button Grid.Row="2" Grid.Column="3" Content="Start/Resume Race" Command="{Binding StartResumeRaceCommand}"
-                Margin="0,0,0,5" Height="21" Width="100" VerticalAlignment="Bottom" />
+                Margin="0,0,0,5" Height="21" Width="150" VerticalAlignment="Bottom" />
 
         <Button Grid.Row="2" Grid.Column="5" Content="Track Call" Command="{Binding TrackCallCommand}"
                 Margin="0,0,0,5" Height="21" Width="100" VerticalAlignment="Bottom" />

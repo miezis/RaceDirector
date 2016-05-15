@@ -93,6 +93,7 @@
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\FreePracticeViewModel.cs" />
     <Compile Include="ViewModels\RaceConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\RaceResultsViewModel.cs" />
     <Compile Include="ViewModels\RacersEntryViewModel.cs" />
     <Compile Include="ViewModels\RaceViewModel.cs" />
     <Compile Include="ViewModels\TrackConnectionViewModel.cs" />
@@ -102,6 +103,9 @@
     </Compile>
     <Compile Include="Views\RaceConfigurationView.xaml.cs">
       <DependentUpon>RaceConfigurationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaceResultsView.xaml.cs">
+      <DependentUpon>RaceResultsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RacersEntryView.xaml.cs">
       <DependentUpon>RacersEntryView.xaml</DependentUpon>
@@ -129,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RaceConfigurationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaceResultsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

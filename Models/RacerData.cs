@@ -4,6 +4,7 @@
     {
         private string _name;
         private string _club;
+        private int _currentLane = 1;
 
         public string Name
         {
@@ -24,5 +25,16 @@
                 OnPropertyChanged(nameof(Club));
             }
         }
+
+        public int CurrentLane
+        {
+            get { return _currentLane; }
+            set
+            {
+                _currentLane = value;
+                OnPropertyChanged(nameof(CurrentLane));
+            }
+        }
+
     }
 }

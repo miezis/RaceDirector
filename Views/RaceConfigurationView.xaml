@@ -14,6 +14,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -58,11 +60,27 @@
         <!-- Row 2 -->
 
         <!-- Row 3 -->
+        <TextBlock Text="Optional Fields For Streaming Race Results:" Margin="10" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" />
         <!-- Row 3 -->
 
         <!-- Row 4 -->
-        <Button x:Name="NextStepButton" Command="{Binding NavigateToNextStepCommand}" Margin="0,0,0,5" Height="21" Width="63"
-                            Content="Next" Grid.Row="4" Grid.Column="4" VerticalAlignment="Bottom"/>
+        <Label x:Name="ApiKeyLabel" Content="API Key:" Grid.Row="4" Grid.Column="1" Margin="0,0,0,5" />
+        <TextBox x:Name="ApiKeyTextBox" TextWrapping="Wrap" Margin="0,0,0,5" Height="21" Width="220"
+                     Text=""
+                     Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" />
+        
         <!-- Row 4 -->
+        
+        <!-- Row 5 -->
+        <Label x:Name="IdentifierLabel" Content="Race ID:" Grid.Row="5" Grid.Column="1" Margin="0,0,0,5" />
+        <TextBox x:Name="IdentifierTextBox" TextWrapping="Wrap" Margin="0,0,0,5" Height="21" Width="220"
+                     Text=""
+                     Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" />
+        <!-- Row 5 -->
+
+        <!-- Row 6 -->
+        <Button x:Name="NextStepButton" Command="{Binding NavigateToNextStepCommand}" Margin="0,0,0,5" Height="21" Width="63"
+                            Content="Next" Grid.Row="6" Grid.Column="4" VerticalAlignment="Bottom"/>
+        <!-- Row 6 -->
     </Grid>
 </Page>
