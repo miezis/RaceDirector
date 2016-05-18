@@ -156,10 +156,11 @@ namespace RaceDirector.ViewModels
 
                     CurrentHeat++;
                     OnPropertyChanged(nameof(CurrentHeat));
-                } else if (CurrentHeat == _application.LanesSet)
+                } else if (!laneChange && CurrentHeat == _application.LanesSet)
                 {
                     var oldIndex = groupLabels.FindIndex(i => i == CurrentGroup);
                     CurrentGroup = groupLabels[oldIndex + 1];
+                    CurrentHeat = 1;
                     TimeLeft = _race.WarmUpTime;
                     warmUpSession = true;
                     OnPropertyChanged(nameof(CurrentGroup));

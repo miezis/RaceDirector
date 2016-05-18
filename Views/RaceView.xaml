@@ -27,7 +27,7 @@
         
         <!-- Row 0 -->
         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentGroup, StringFormat=Group {0}}" HorizontalAlignment="Center" />
-        <TextBlock Grid.Row="0" Grid.Column="3" Text="Heat 1/2" HorizontalAlignment="Center" />
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding CurrentHeat, StringFormat=Heat {0}}" HorizontalAlignment="Center"/>
         <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding TimeLeft}" HorizontalAlignment="Center" />
         <!-- Row 0 -->
         
