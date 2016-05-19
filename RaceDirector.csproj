@@ -71,6 +71,7 @@
     <Compile Include="Commands\Application\NavigateToCommand.cs" />
     <Compile Include="Commands\TrackConnection\RemoveLaneCommand.cs" />
     <Compile Include="Container.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\IndexToLaneConverter.cs" />
     <Compile Include="DTO\LanePin.cs" />
     <Compile Include="DTO\TrackConnectionParameters.cs" />

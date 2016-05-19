@@ -4,12 +4,18 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RaceDirector.Views"
+      xmlns:converters="clr-namespace:RaceDirector.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="460"
       Title="RaceView">
 
+    <Page.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BoolConverter"/>
+    </Page.Resources>
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -26,14 +32,20 @@
         </Grid.ColumnDefinitions>
         
         <!-- Row 0 -->
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentGroup, StringFormat=Group {0}}" HorizontalAlignment="Center" />
-        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding CurrentHeat, StringFormat=Heat {0}}" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding TimeLeft}" HorizontalAlignment="Center" />
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="Warm Up In Progress" Visibility="{Binding WarmUpSession, Converter={StaticResource BoolConverter}, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" />
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="Heat In Progress" Visibility="{Binding HeatSession, Converter={StaticResource BoolConverter}, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" />
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="Lane Change In Progress" Visibility="{Binding LaneChange, Converter={StaticResource BoolConverter}, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" />
         <!-- Row 0 -->
         
         <!-- Row 1 -->
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentGroup, StringFormat=Group {0}}" HorizontalAlignment="Center" />
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding CurrentHeat, StringFormat=Heat {0}}" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="5" Text="{Binding TimeLeft}" HorizontalAlignment="Center" />
+        <!-- Row 1 -->
+        
+        <!-- Row 2 -->
         <ListView Margin="5" AlternationCount="8" ItemsSource="{Binding CurrentRacers}"
-                  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5">
+                  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Lane" Width="30" DisplayMemberBinding="{Binding Path=CurrentLane}" />
@@ -46,17 +58,17 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <!-- Row 1 -->
-
         <!-- Row 2 -->
-        <Button Grid.Row="2" Grid.Column="1" Content="Start WarmUp" Command="{Binding StartWarmUpCommand}"
+
+        <!-- Row 3 -->
+        <Button Grid.Row="3" Grid.Column="1" Content="Start WarmUp" Command="{Binding StartWarmUpCommand}"
                 Margin="0,0,0,5" Height="21" Width="100" VerticalAlignment="Bottom" />
 
-        <Button Grid.Row="2" Grid.Column="3" Content="Start/Resume Race" Command="{Binding StartResumeRaceCommand}"
+        <Button Grid.Row="3" Grid.Column="3" Content="Start/Resume Race" Command="{Binding StartResumeRaceCommand}"
                 Margin="0,0,0,5" Height="21" Width="150" VerticalAlignment="Bottom" />
 
-        <Button Grid.Row="2" Grid.Column="5" Content="Track Call" Command="{Binding TrackCallCommand}"
+        <Button Grid.Row="3" Grid.Column="5" Content="Track Call" Command="{Binding TrackCallCommand}"
                 Margin="0,0,0,5" Height="21" Width="100" VerticalAlignment="Bottom" />
-        <!-- Row 2 -->
+        <!-- Row 3 -->
     </Grid>
 </Page>

@@ -39,8 +39,11 @@ namespace RaceDirector.ViewModels
 
         private IArduinoService _arduinoService;
 
-        private bool warmUpSession;
-        private bool laneChange;
+        public bool WarmUpSession { get; private set; }
+
+        public bool LaneChange { get; private set; }
+
+        public bool HeatSession => !(WarmUpSession || LaneChange);
 
         public List<int> changeSequence { get; private set; }
         public Race Race => _race;
@@ -87,7 +90,8 @@ namespace RaceDirector.ViewModels
 
             _arduinoService.UpdateTimes += OnUpdateTimes;
 
-            warmUpSession = true;
+            WarmUpSession = true;
+            LaneChange = false;
         }
 
         public void StartWarmUp()
@@ -128,57 +132,84 @@ namespace RaceDirector.ViewModels
         private void RaceTimerTick(object sender, EventArgs e)
         {
             TimeLeft = TimeLeft.Subtract(TimeSpan.FromSeconds(1));
-            
 
             if (TimeLeft == TimeSpan.Zero)
             {
-                _arduinoService.PauseSession();
-                _raceTimer.Stop();
-
-                TimeLeft = _race.LaneChangeTime;
-
-                if (warmUpSession || laneChange)
-                {
-                    TimeLeft = _race.HeatTime;
-                }
-
-                if (!warmUpSession && !laneChange && CurrentHeat != _application.LanesSet)
-                {
-                    foreach (var racer in CurrentRacers)
-                    {
-                        var oldIndex = changeSequence.FindIndex(i => i == racer.CurrentLane);
-                        var newIndex = oldIndex + 1;
-                        newIndex = newIndex >= changeSequence.Count ? 0 : newIndex;
-                        racer.CurrentLane = changeSequence[newIndex];
-                    }
-
-                    laneChange = true;
-
-                    CurrentHeat++;
-                    OnPropertyChanged(nameof(CurrentHeat));
-                } else if (!laneChange && CurrentHeat == _application.LanesSet)
-                {
-                    var oldIndex = groupLabels.FindIndex(i => i == CurrentGroup);
-                    CurrentGroup = groupLabels[oldIndex + 1];
-                    CurrentHeat = 1;
-                    TimeLeft = _race.WarmUpTime;
-                    warmUpSession = true;
-                    OnPropertyChanged(nameof(CurrentGroup));
-                    OnPropertyChanged(nameof(CurrentHeat));
-                    OnPropertyChanged(nameof(CurrentRacers));
-                } else if (laneChange)
-                {
-                    laneChange = false;
-                } else if (warmUpSession)
-                {
-                    warmUpSession = false;
-                }
-
-
-                //if warm up ended
+                prepareNextStep();
             }
 
             OnPropertyChanged(nameof(TimeLeft));
+        }
+
+        private void prepareNextStep()
+        {
+            _arduinoService.PauseSession();
+            _raceTimer.Stop();
+
+            TimeLeft = _race.LaneChangeTime;
+
+            if (WarmUpSession || LaneChange)
+            {
+                prepareHeat();
+
+                OnPropertyChanged(nameof(LaneChange));
+                OnPropertyChanged(nameof(WarmUpSession));
+                OnPropertyChanged(nameof(HeatSession));
+
+                return;
+            }
+
+            if (!WarmUpSession && !LaneChange && CurrentHeat != _application.LanesSet)
+            {
+                prepareLaneChange();
+            } else if (!LaneChange && CurrentHeat == _application.LanesSet)
+            {
+                prepareNextGroup();
+            }
+
+            OnPropertyChanged(nameof(LaneChange));
+            OnPropertyChanged(nameof(WarmUpSession));
+            OnPropertyChanged(nameof(HeatSession));
+        }
+
+        private void prepareHeat()
+        {
+            TimeLeft = _race.HeatTime;
+            LaneChange = false;
+            WarmUpSession = false;
+        }
+
+        private void prepareLaneChange()
+        {
+            TimeLeft = _race.LaneChangeTime;
+
+            foreach (var racer in CurrentRacers)
+            {
+                var oldIndex = changeSequence.FindIndex(i => i == racer.CurrentLane);
+                var newIndex = oldIndex + 1;
+                newIndex = newIndex >= changeSequence.Count ? 0 : newIndex;
+                racer.CurrentLane = changeSequence[newIndex];
+            }
+
+            LaneChange = true;
+            WarmUpSession = false;
+
+            CurrentHeat++;
+            OnPropertyChanged(nameof(CurrentHeat));
+        }
+
+        private void prepareNextGroup()
+        {
+            var oldIndex = groupLabels.FindIndex(i => i == CurrentGroup);
+            CurrentGroup = groupLabels[oldIndex + 1];
+            CurrentHeat = 1;
+            TimeLeft = _race.WarmUpTime;
+            WarmUpSession = true;
+            LaneChange = false;
+            OnPropertyChanged(nameof(WarmUpSession));
+            OnPropertyChanged(nameof(CurrentGroup));
+            OnPropertyChanged(nameof(CurrentHeat));
+            OnPropertyChanged(nameof(CurrentRacers));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
