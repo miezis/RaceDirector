@@ -7,8 +7,11 @@ namespace RaceDirector.Models
 {
     public class Race : BaseModel
     {
+        private string _apiKey;
+        private int _raceId;
         private string _raceClass;
         private string _eventName;
+        private bool _finished;
         private TimeSpan _heatTime;
         private TimeSpan _laneChangeTime;
         private TimeSpan _warmUpTime;
@@ -18,6 +21,26 @@ namespace RaceDirector.Models
         {
             _racers = new ObservableCollection<RacerData> { new RacerData() };
             _racers.CollectionChanged += RacersDataChanged;
+        }
+
+        public string ApiKey
+        {
+            get { return _apiKey; }
+            set
+            {
+                _apiKey = value;
+                OnPropertyChanged(nameof(ApiKey));
+            }
+        }
+
+        public int RaceId
+        {
+            get { return _raceId; }
+            set
+            {
+                _raceId = value;
+                OnPropertyChanged(nameof(RaceId));
+            }
         }
 
         public string RaceClass
@@ -37,6 +60,16 @@ namespace RaceDirector.Models
             {
                 _eventName = value;
                 OnPropertyChanged(nameof(EventName));
+            }
+        }
+
+        public bool Finished
+        {
+            get { return _finished; }
+            set
+            {
+                _finished = value;
+                OnPropertyChanged(nameof(Finished));
             }
         }
 

@@ -66,7 +66,7 @@
         <!-- Row 4 -->
         <Label x:Name="ApiKeyLabel" Content="API Key:" Grid.Row="4" Grid.Column="1" Margin="0,0,0,5" />
         <TextBox x:Name="ApiKeyTextBox" TextWrapping="Wrap" Margin="0,0,0,5" Height="21" Width="220"
-                     Text=""
+                     Text="{Binding Race.ApiKey, UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" />
         
         <!-- Row 4 -->
@@ -74,7 +74,7 @@
         <!-- Row 5 -->
         <Label x:Name="IdentifierLabel" Content="Race ID:" Grid.Row="5" Grid.Column="1" Margin="0,0,0,5" />
         <TextBox x:Name="IdentifierTextBox" TextWrapping="Wrap" Margin="0,0,0,5" Height="21" Width="220"
-                     Text=""
+                     Text="{Binding Race.RaceId, UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" />
         <!-- Row 5 -->
 

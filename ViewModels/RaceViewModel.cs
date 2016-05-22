@@ -8,9 +8,11 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using RaceDirector.Annotations;
 using RaceDirector.Commands.Race;
+using RaceDirector.DTO;
 using RaceDirector.Models;
 using RaceDirector.ServiceContracts;
 using RaceDirector.Services;
+using Race = RaceDirector.Models.Race;
 
 namespace RaceDirector.ViewModels
 {
@@ -114,19 +116,49 @@ namespace RaceDirector.ViewModels
 
         private void OnUpdateTimes(object sender, UpdateTimesEventArgs args)
         {
-            var lane = args.Lane;
-            var time = TimeSpan.FromMilliseconds(args.Time);
-
-            var racer = CurrentRacers.Find(i => i.CurrentLane == lane);
-
-            racer.LapTimes.Insert(0, time);
-
-            if (racer.BestLapTime > time)
+            if (!HeatSession)
             {
-                racer.BestLapTime = time;
-            }
+                var lane = args.Lane;
+                var time = TimeSpan.FromMilliseconds(args.Time);
+
+                var racer = CurrentRacers.Find(i => i.CurrentLane == lane);
+
+                racer.LapTimes.Insert(0, time);
+
+                if (racer.BestLapTime > time)
+                {
+                    racer.BestLapTime = time;
+                }
             
-            racer.LapCount++;
+                racer.LapCount++;
+
+                if (_race.RaceId > 0)
+                {
+                    SendDataToWeb();
+                }
+            }
+
+        }
+
+        private void SendDataToWeb()
+        {
+            var racers = _race.Racers
+                .Select(x => new Racer
+                {
+                    name = x.Name,
+                    club = x.Club,
+                    best_time = (int) x.BestLapTime.TotalMilliseconds,
+                    lap_count = x.LapCount
+                }).ToList();
+
+            var race = new DTO.Race
+            {
+                apiKey = _race.ApiKey,
+                id = _race.RaceId,
+                racers = racers
+            };
+
+            RaceHubService.SendData(race);
         }
 
         private void RaceTimerTick(object sender, EventArgs e)
@@ -202,14 +234,21 @@ namespace RaceDirector.ViewModels
         {
             var oldIndex = groupLabels.FindIndex(i => i == CurrentGroup);
             CurrentGroup = groupLabels[oldIndex + 1];
-            CurrentHeat = 1;
-            TimeLeft = _race.WarmUpTime;
-            WarmUpSession = true;
-            LaneChange = false;
-            OnPropertyChanged(nameof(WarmUpSession));
-            OnPropertyChanged(nameof(CurrentGroup));
-            OnPropertyChanged(nameof(CurrentHeat));
-            OnPropertyChanged(nameof(CurrentRacers));
+            if (_groupedRacers.ContainsKey(CurrentGroup))
+            {
+                CurrentHeat = 1;
+                TimeLeft = _race.WarmUpTime;
+                WarmUpSession = true;
+                LaneChange = false;
+                OnPropertyChanged(nameof(WarmUpSession));
+                OnPropertyChanged(nameof(CurrentGroup));
+                OnPropertyChanged(nameof(CurrentHeat));
+                OnPropertyChanged(nameof(CurrentRacers));
+            }
+            else
+            {
+                _race.Finished = true;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -15,7 +15,7 @@ namespace RaceDirector.Commands.Race
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            return _viewModel.WarmUpSession;
         }
 
         public void Execute(object parameter)
@@ -23,6 +23,10 @@ namespace RaceDirector.Commands.Race
             _viewModel.StartWarmUp();
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
     }
 }
