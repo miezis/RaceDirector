@@ -45,7 +45,7 @@ namespace RaceDirector.ViewModels
 
         public bool LaneChange { get; private set; }
 
-        public bool HeatSession => !(WarmUpSession || LaneChange);
+        public bool HeatSession => !(WarmUpSession || LaneChange) && !_race.Finished;
 
         public List<int> changeSequence { get; private set; }
         public Race Race => _race;
@@ -251,6 +251,10 @@ namespace RaceDirector.ViewModels
             CurrentGroup = groupLabels[oldIndex + 1];
             if (_groupedRacers.ContainsKey(CurrentGroup))
             {
+                for (var i = 0; i < CurrentRacers.Count; i++)
+                {
+                    CurrentRacers[i].CurrentLane = changeSequence[i];
+                }
                 CurrentHeat = 1;
                 TimeLeft = _race.WarmUpTime;
                 WarmUpSession = true;
