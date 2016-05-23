@@ -77,6 +77,11 @@ namespace RaceDirector.ViewModels
             _raceTimer.Tick += RaceTimerTick;
             _raceTimer.Interval = TimeSpan.FromSeconds(1);
 
+            for (var i = 0; i < _race.Racers.Count; i++)
+            {
+                _race.Racers[i].Position = i + 1;
+            }
+
             _groupedRacers = _race.Racers
                 .Select((x, i) => new {Index = i, Value = x})
                 .GroupBy(x => x.Index/_application.LanesSet)
@@ -116,7 +121,7 @@ namespace RaceDirector.ViewModels
 
         private void OnUpdateTimes(object sender, UpdateTimesEventArgs args)
         {
-            if (!HeatSession)
+            if (HeatSession)
             {
                 var lane = args.Lane;
                 var time = TimeSpan.FromMilliseconds(args.Time);

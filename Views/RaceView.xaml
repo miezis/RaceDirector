@@ -54,7 +54,7 @@
                     <GridViewColumn Header="Total Laps" Width="60" DisplayMemberBinding="{Binding Path=LapCount}" />
                     <GridViewColumn Header="Lap Time" Width="55" DisplayMemberBinding="{Binding Path=LapTimes[0].TotalSeconds}"/>
                     <GridViewColumn Header="Best Time" Width="55" DisplayMemberBinding="{Binding Path=BestLapTime.TotalSeconds}" />
-                    <GridViewColumn Header="Position" Width="50" DisplayMemberBinding="{Binding Path=CurrentLane}" />
+                    <GridViewColumn Header="Position" Width="50" DisplayMemberBinding="{Binding Path=Position}" />
                 </GridView>
             </ListView.View>
         </ListView>
