@@ -128,18 +128,28 @@ namespace RaceDirector.ViewModels
 
                 var racer = CurrentRacers.Find(i => i.CurrentLane == lane);
 
-                racer.LapTimes.Insert(0, time);
-
-                if (racer.BestLapTime > time)
+                if (racer != null)
                 {
-                    racer.BestLapTime = time;
-                }
-            
-                racer.LapCount++;
+                    racer.LapTimes.Insert(0, time);
 
-                if (_race.RaceId > 0)
-                {
-                    SendDataToWeb();
+                    if (racer.BestLapTime > time)
+                    {
+                        racer.BestLapTime = time;
+                    }
+                
+                    racer.LapCount++;
+
+                    var sortedRacers = _race.Racers.OrderByDescending(i => i.LapCount).ToList();
+
+                    for (var i = 0; i < sortedRacers.Count; i++)
+                    {
+                        _race.Racers.First(x => x.Name == sortedRacers[i].Name).Position = i + 1;
+                    }
+
+                    if (_race.RaceId > 0)
+                    {
+                        SendDataToWeb();
+                    }
                 }
             }
 
