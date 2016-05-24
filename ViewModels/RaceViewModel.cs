@@ -12,6 +12,7 @@ using RaceDirector.DTO;
 using RaceDirector.Models;
 using RaceDirector.ServiceContracts;
 using RaceDirector.Services;
+using RaceDirector.Views;
 using Race = RaceDirector.Models.Race;
 
 namespace RaceDirector.ViewModels
@@ -57,6 +58,7 @@ namespace RaceDirector.ViewModels
         public TimeSpan TimeLeft { get; private set; }
         public ICommand StartResumeRaceCommand { get; private set; }
         public ICommand TrackCallCommand { get; private set; }
+        public ICommand GoToResultsCommand { get; private set; }
 
         public RaceViewModel()
         {
@@ -66,6 +68,7 @@ namespace RaceDirector.ViewModels
             
             StartResumeRaceCommand = new StartResumeRaceCommand(this);
             TrackCallCommand = new TrackCallCommand(this);
+            GoToResultsCommand = new GoToResultsCommand(this);
 
             CurrentGroup = "A";
             CurrentHeat = 1;
@@ -97,6 +100,11 @@ namespace RaceDirector.ViewModels
 
             WarmUpSession = true;
             LaneChange = false;
+        }
+
+        public void GoToResults()
+        {
+            _application.CurrentPageView = Container.Resolve<RaceResultsView>();
         }
 
         public bool CanStartResumeRace()
@@ -224,6 +232,11 @@ namespace RaceDirector.ViewModels
         private void prepareHeat()
         {
             TimeLeft = _race.HeatTime;
+            if (LaneChange)
+            {
+                _raceTimer.Start();
+                _arduinoService.StartSession();
+            }
             LaneChange = false;
             WarmUpSession = false;
         }
@@ -244,6 +257,7 @@ namespace RaceDirector.ViewModels
             WarmUpSession = false;
 
             CurrentHeat++;
+            _raceTimer.Start();
             OnPropertyChanged(nameof(CurrentHeat));
         }
 

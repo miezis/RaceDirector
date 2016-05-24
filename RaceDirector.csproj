@@ -87,6 +87,7 @@
     <Compile Include="Commands\FreePractice\EndFreePracticeCommand.cs" />
     <Compile Include="Commands\RacersEntry\AddRacerCommand.cs" />
     <Compile Include="Commands\RacersEntry\RemoveRacerCommand.cs" />
+    <Compile Include="Commands\Race\GoToResultsCommand.cs" />
     <Compile Include="Commands\Race\StartResumeRaceCommand.cs" />
     <Compile Include="Commands\Race\TrackCallCommand.cs" />
     <Compile Include="Commands\TrackConnection\AddLaneCommand.cs" />

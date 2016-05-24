@@ -19,14 +19,21 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
-        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">ISRA WC PR-24</TextBlock>
-        
+
+        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} {1}">
+                    <Binding Path="Race.EventName" />
+                    <Binding Path="Race.RaceClass" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+
         <ListView Margin="5" AlternationCount="8" ItemsSource="{Binding Results}"
                   Grid.Row="1" Grid.Column="1">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Position" Width="60" DisplayMemberBinding="{Binding Path=CurrentLane}" />
+                    <GridViewColumn Header="Position" Width="60" DisplayMemberBinding="{Binding Path=Position}" />
                     <GridViewColumn Header="Racers Name"  Width="80" DisplayMemberBinding="{Binding Path=Name}"/>
                     <GridViewColumn Header="Total Laps" Width="60" DisplayMemberBinding="{Binding Path=LapCount}" />
                     <GridViewColumn Header="Best Time" Width="60" DisplayMemberBinding="{Binding Path=BestLapTime.TotalSeconds}" />
