@@ -55,7 +55,6 @@ namespace RaceDirector.ViewModels
 
         public int CurrentHeat { get; private set; }
         public TimeSpan TimeLeft { get; private set; }
-        public ICommand StartWarmUpCommand { get; private set; }
         public ICommand StartResumeRaceCommand { get; private set; }
         public ICommand TrackCallCommand { get; private set; }
 
@@ -64,8 +63,7 @@ namespace RaceDirector.ViewModels
             _application = Container.Resolve<Application>();
             _race = Container.Resolve<Race>();
             _arduinoService = Container.Resolve<IArduinoService>();
-
-            StartWarmUpCommand = new StartWarmUpCommand(this);
+            
             StartResumeRaceCommand = new StartResumeRaceCommand(this);
             TrackCallCommand = new TrackCallCommand(this);
 
@@ -101,10 +99,14 @@ namespace RaceDirector.ViewModels
             LaneChange = false;
         }
 
-        public void StartWarmUp()
+        public bool CanStartResumeRace()
         {
-            _arduinoService.StartSession();
-            _raceTimer.Start();
+            return !(_raceTimer.IsEnabled || _race.Finished);
+        }
+
+        public bool CanMakeTrackCall()
+        {
+            return _raceTimer.IsEnabled && !_race.Finished;
         }
 
         public void StartResumeRace()
@@ -152,7 +154,6 @@ namespace RaceDirector.ViewModels
                     }
                 }
             }
-
         }
 
         private void SendDataToWeb()
@@ -183,6 +184,7 @@ namespace RaceDirector.ViewModels
             if (TimeLeft == TimeSpan.Zero)
             {
                 prepareNextStep();
+                CommandManager.InvalidateRequerySuggested();
             }
 
             OnPropertyChanged(nameof(TimeLeft));
@@ -266,6 +268,7 @@ namespace RaceDirector.ViewModels
             }
             else
             {
+                TimeLeft = TimeSpan.Zero;
                 _race.Finished = true;
             }
         }

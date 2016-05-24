@@ -88,7 +88,6 @@
     <Compile Include="Commands\RacersEntry\AddRacerCommand.cs" />
     <Compile Include="Commands\RacersEntry\RemoveRacerCommand.cs" />
     <Compile Include="Commands\Race\StartResumeRaceCommand.cs" />
-    <Compile Include="Commands\Race\StartWarmUpCommand.cs" />
     <Compile Include="Commands\Race\TrackCallCommand.cs" />
     <Compile Include="Commands\TrackConnection\AddLaneCommand.cs" />
     <Compile Include="Commands\TrackConnection\ConnectToTrackCommand.cs" />
