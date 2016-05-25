@@ -70,6 +70,7 @@ namespace RaceDirector.ViewModels
                 BaudRate = _trackConnection.BaudRate,
                 Port = _trackConnection.Port,
                 MinTime = _trackConnection.MinTime,
+                RelayPin = _trackConnection.RelayPin,
                 LanePins = _trackConnection.LanePins
                     .Select(x => new LanePinDto {Lane = x.Lane, Pin = x.Pin })
                     .ToList()

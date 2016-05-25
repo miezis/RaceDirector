@@ -19,6 +19,13 @@ namespace RaceDirector.Helpers
             caller.Write(command);
         }
 
+        public static void SetRelay(int relayPin, IArduinoService caller)
+        {
+            string command = $"!{(int) TrackCommands.SetRelay:00}{relayPin:00}.";
+
+            caller.Write(command);
+        }
+
         public static void StartSession(IArduinoService caller)
         {
             string command = $"!{(int)TrackCommands.StartSession:00}.";

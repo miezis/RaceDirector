@@ -41,6 +41,9 @@ namespace RaceDirector.Helpers
                     int minTime = int.Parse(data[1]);
                     caller.OnMinTimeSet(minTime);
                     break;
+                case 'P':
+                    caller.OnRelaySet();
+                    break;
             }    
         }
     }

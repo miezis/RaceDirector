@@ -8,6 +8,7 @@ namespace RaceDirector.Models
         private object _currentPageView;
         private int _lanesSet;
         private bool _minTimeSet;
+        private bool _relaySet;
 
         public Application()
         {
@@ -49,8 +50,18 @@ namespace RaceDirector.Models
             }
         }
 
+        public bool RelaySet
+        {
+            get { return _relaySet; }
+            set
+            {
+                _relaySet = value;
+                OnPropertyChanged(nameof(IsConnected));
+            }
+        }
+
         public int LaneCount { get; set; }
 
-        public bool IsConnected => LaneCount == _lanesSet && _minTimeSet;
+        public bool IsConnected => LaneCount == _lanesSet && _minTimeSet && _relaySet;
     }
 }

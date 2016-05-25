@@ -24,5 +24,6 @@ namespace RaceDirector.ServiceContracts
         void OnSessionStarted();
         void OnLaneSet();
         void OnMinTimeSet(int minTime);
+        void OnRelaySet();
     }
 }

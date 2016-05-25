@@ -7,6 +7,7 @@ namespace RaceDirector.DTO
         public string Port { get; set; }
         public int BaudRate { get; set; }
         public int MinTime { get; set; }
+        public int RelayPin { get; set; }
         public List<LanePin> LanePins { get; set; }
     }
 }

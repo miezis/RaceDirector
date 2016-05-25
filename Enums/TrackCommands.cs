@@ -6,6 +6,7 @@
         SetMinTime = 1,
         StartSession = 2,
         PauseSession = 3,
-        StopSession = 4
+        StopSession = 4,
+        SetRelay = 5
     }
 }

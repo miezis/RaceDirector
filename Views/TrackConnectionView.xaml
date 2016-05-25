@@ -48,6 +48,7 @@
 
         <Label x:Name="PowerRelayLabel" Content="Power Relay Pin:" Grid.Row="1" Grid.Column="4" Margin="0,0,0,5" />
         <TextBox x:Name="PowerRelayTextBox" TextWrapping="Wrap" Margin="0,0,0,5" Height="21" Width="63"
+                     Text="{Binding TrackConnection.RelayPin, UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="1" Grid.Column="5" />
         <!-- Row 1 -->
 

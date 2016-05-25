@@ -40,6 +40,7 @@ namespace RaceDirector.Models
         private string _port;
         private int _baudRate;
         private int _minTime;
+        private int _relayPin;
         private ObservableCollection<LanePin> _lanePins;
 
         public TrackConnection()
@@ -48,6 +49,7 @@ namespace RaceDirector.Models
             _port = "COM3";
             _baudRate = 9600;
             _minTime = 3000;
+            _relayPin = 0;
             _lanePins = new ObservableCollection<LanePin> {new LanePin(1, 0)};
 
             //Add event handler when lane pins are changed
@@ -81,6 +83,16 @@ namespace RaceDirector.Models
             {
                 _minTime = value;
                 OnPropertyChanged(nameof(MinTime));
+            }
+        }
+
+        public int RelayPin
+        {
+            get { return _relayPin; }
+            set
+            {
+                _relayPin = value;
+                OnPropertyChanged(nameof(RelayPin));
             }
         }
 

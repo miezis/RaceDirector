@@ -39,6 +39,7 @@ namespace RaceDirector.Services
             }
 
             ArduinoCommander.SetMinTime(parameters.MinTime, this);
+            ArduinoCommander.SetRelay(parameters.RelayPin, this);
         }
 
         public void Disconnect()
@@ -120,6 +121,12 @@ namespace RaceDirector.Services
         {
             var trackStatus = Container.Resolve<Application>();
             trackStatus.MinTimeSet = true;
+        }
+
+        public void OnRelaySet()
+        {
+            var trackStatus = Container.Resolve<Application>();
+            trackStatus.RelaySet = true;
         }
     }
 }
