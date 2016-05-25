@@ -7,5 +7,6 @@ namespace RaceDirector.DTO
         public int id;
         public string apiKey;
         public List<Racer> racers;
+        public string finished;
     }
 }

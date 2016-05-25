@@ -179,7 +179,8 @@ namespace RaceDirector.ViewModels
             {
                 apiKey = _race.ApiKey,
                 id = _race.RaceId,
-                racers = racers
+                racers = racers,
+                finished = _race.Finished ? "true" : "false"
             };
 
             RaceHubService.SendData(race);
