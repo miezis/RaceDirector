@@ -285,6 +285,7 @@ namespace RaceDirector.ViewModels
             {
                 TimeLeft = TimeSpan.Zero;
                 _race.Finished = true;
+                SendDataToWeb();
             }
         }
 
