@@ -1,9 +1,7 @@
-﻿using System.Runtime.Remoting.Services;
-using Autofac;
+﻿using Autofac;
 using RaceDirector.Models;
 using RaceDirector.ServiceContracts;
 using RaceDirector.Services;
-using RaceDirector.ViewModels;
 using RaceDirector.Views;
 
 namespace RaceDirector
