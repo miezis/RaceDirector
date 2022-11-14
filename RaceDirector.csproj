@@ -4,7 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Copyright>miezis © 2016</Copyright>
+    <Authors>miezis</Authors>
   </PropertyGroup>
 
   <ItemGroup>
